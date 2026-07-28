@@ -1,36 +1,37 @@
-# WLMAC Robotics — sponsorship page redesign
+# WLMAC Robotics sponsorship page redesign
 
-A redesign of the WLMAC Robotics FTC sponsorship page, in the **data-texture**
-style: instrument-panel telemetry drawn in the school's colours.
+A redesign of the WLMAC Robotics FTC sponsorship page in the data-texture
+style, which means instrument-panel telemetry drawn in the school's colours.
+
+Live at https://centurionactionx.github.io/wlmac-ftc-redesign/
 
 ## Palette
 
-Taken from the live site at <https://www.wlmacrobotics.ca> so the two read as
-one program:
+Taken from the live site at https://www.wlmacrobotics.ca so that the two pages
+read as one program.
 
 | | |
 | --- | --- |
-| Surface | `#0D1B2A` navy, raised to `#12263A` / `#17324C` |
-| Gold | `#F0B44C` — figures, money, the primary action |
-| Blue | `#6FA6E8` — labels, links, structure |
+| Surface | `#0D1B2A` navy, raised to `#12263A` and `#17324C` |
+| Gold | `#F0B44C` for figures, money, and the primary action |
+| Blue | `#6FA6E8` for labels, links, and structure |
 | Alliance | `#1D5FC2` blue and `#CE3038` red, once each, on the team plates |
 
-Gold and blue divide the work rather than competing: gold marks value and
-anything you can act on, blue marks what a thing *is*. Every pairing clears
-WCAG AA on the navy, and the budget bars clear 3:1 against their own track.
-
-**Live:** https://centurionactionx.github.io/wlmac-ftc-redesign/
+Gold and blue split the work between them instead of competing. Gold marks
+value and anything you can act on. Blue marks what a thing is. Every text
+pairing clears WCAG AA on the navy, and the budget bars clear 3:1 against
+their own track.
 
 ## What this is
 
-The page came out of a ten-way design bake-off (five visual styles, each built
-twice). This is a merge of the two data-texture builds, taking the hero,
-photography and most plates from one and the plate stamps and budget
+The page came out of a ten-way design bake-off, five visual styles each built
+twice. This merges the two data-texture builds, taking the hero, the
+photography and most plates from one, and the plate stamps and budget
 visualisation from the other.
 
-Everything is in `index.html` — markup, design tokens, and the scripts that draw
-the hero character field and run the season carousel. There is no build step and
-no dependency beyond the two webfonts.
+Everything lives in `index.html`: markup, design tokens, and the scripts that
+draw the character field and run the season carousel. There is no build step,
+and nothing to install beyond the two webfonts the page pulls in.
 
 ## Layout
 
@@ -42,45 +43,49 @@ no dependency beyond the two webfonts.
 
 ## The plates
 
-1. Hero — the season photograph, framed as on the live site
-2. Build grid — a robot drawn as a 104×60 character field, settling on load
-3. The two teams — CyberLyons 27964, MechLyons 32514
-4. Season photographs — a continuously drifting carousel
+1. Hero, carrying the season photograph framed as on the live site
+2. Build grid, a robot drawn as a 104x60 character field that settles on load
+3. The two teams, CyberLyons 27964 and MechLyons 32514
+4. Season photographs, on a carousel that drifts continuously
 5. Program figures
 6. What a partner gets
 7. Partner tiers
 8. The $10,000 budget, line by line
 9. Contact
 
-Plate and figure numbers are positional: if a plate moves, both sequences
-are renumbered so they still read in document order.
+Plate and figure numbers are positional. Move a plate and both sequences get
+renumbered so they still read in document order.
 
 ## Verification
 
 The enquiry form carries a reCAPTCHA v2 checkbox. `CAPTCHA_KEY` near the
-bottom of `index.html` holds the site key; blanking it removes the widget.
+bottom of `index.html` holds the site key, and blanking it removes the widget
+entirely.
 
 A key is bound to a domain list in the reCAPTCHA console, so whichever host
-serves this page has to be named there. Two things follow from that:
+serves this page has to be named there. Two things follow. The field ships
+hidden and is revealed only once the widget has really rendered, so a blocked
+script leaves the form exactly as it was. And the check prompts once, then
+stands aside: an unticked box and a box that cannot be ticked look identical
+from the page's side, and a gate nobody can pass must never be able to swallow
+an enquiry.
 
-- The field ships hidden and is revealed only once the widget has really
-  rendered, so a blocked script leaves the form exactly as it was.
-- The check prompts once and then stands aside. An unticked box and a box
-  that *cannot* be ticked are indistinguishable from the page's side, and a
-  gate nobody can pass must not be able to swallow an enquiry.
-
-Because the form hands off to the visitor's mail client, no server of ours
-sees the token, so the widget is a deterrent rather than proof of a human.
-Verification would need a backend holding the secret — the main site gets
-this by sending through EmailJS, which checks the token before delivering.
+Because the form hands off to the visitor's mail client, no server of ours ever
+sees the token, so the widget works as a deterrent rather than proof of a
+human. Real verification needs a backend holding the secret. The main site gets
+that by sending through EmailJS, which checks the token before it delivers.
 
 ## Notes
 
-- The hero field, the budget bars and the carousel each treat animation as an
-  enhancement: a timer owns every end state, so the page still lands correctly
-  where animation frames never arrive.
-- `prefers-reduced-motion` stops the carousel drift and the settle animations.
-- Photographs run in their own colour, framed by a hairline and nothing else.
+The character field, the budget bars and the carousel all treat animation as an
+enhancement. A timer owns every end state, so the page still lands correctly in
+a renderer that never serves an animation frame. Setting
+`prefers-reduced-motion` stops the carousel drift and the settle animations.
+Photographs run in their own colour, framed by a hairline and nothing else.
 
-The contact form hands off to the visitor's mail client via `mailto:`; there is
-no backend.
+## Writing
+
+Copy on the page follows a house style that avoids the tells of machine
+writing: no em dashes in prose, no groups of three, no "not X, but Y", and no
+stock metaphors. Worth a read before editing the copy, since those patterns
+creep back in easily.
