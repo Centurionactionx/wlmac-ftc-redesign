@@ -30,8 +30,8 @@ photography and most plates from one, and the plate stamps and budget
 visualisation from the other.
 
 Everything lives in `index.html`: markup, design tokens, and the scripts that
-draw the character field and run the season carousel. There is no build step,
-and nothing to install beyond the two webfonts the page pulls in.
+run the season carousel and the enquiry form. There is no build step, and
+nothing to install beyond the two webfonts the page pulls in.
 
 ## Layout
 
@@ -44,14 +44,19 @@ and nothing to install beyond the two webfonts the page pulls in.
 ## The plates
 
 1. Hero, carrying the season photograph framed as on the live site
-2. Build grid, a robot drawn as a 104x60 character field that settles on load
-3. The two teams, CyberLyons 27964 and MechLyons 32514
-4. Season photographs, on a carousel that drifts continuously
-5. Program figures
-6. What a partner gets
-7. Partner tiers
-8. The $10,000 budget, line by line
-9. Contact
+2. The two teams, CyberLyons 27964 and MechLyons 32514
+3. Season photographs, on a carousel that drifts continuously
+4. Program figures
+5. What a partner gets
+6. Partner tiers
+7. The $10,000 budget, split by where the money goes
+8. Contact
+
+The budget plate runs as two columns that carry meaning rather than just
+splitting the list in half. Gold on the left is what goes into the machines,
+$6,400 across four lines. Blue on the right is what it costs to run the
+season, $3,600 across six. Bar widths stay comparable across both columns,
+since every bar is measured against the largest single line.
 
 Plate and figure numbers are positional. Move a plate and both sequences get
 renumbered so they still read in document order.
@@ -77,10 +82,10 @@ that by sending through EmailJS, which checks the token before it delivers.
 
 ## Notes
 
-The character field, the budget bars and the carousel all treat animation as an
-enhancement. A timer owns every end state, so the page still lands correctly in
-a renderer that never serves an animation frame. Setting
-`prefers-reduced-motion` stops the carousel drift and the settle animations.
+The budget bars and the carousel both treat animation as an enhancement. A
+timer owns every end state, so the page still lands correctly in a renderer
+that never serves an animation frame. Setting `prefers-reduced-motion` stops
+the carousel drift and the bar fills.
 Photographs run in their own colour, framed by a hairline and nothing else.
 
 ## Writing

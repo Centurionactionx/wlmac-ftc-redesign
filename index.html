@@ -214,30 +214,6 @@ h2{
   background-position:72% 40%;
 }
 
-.field-wrap{
-  position:relative;z-index:var(--z-field);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;pointer-events:none;
-  aspect-ratio:16/7;width:100%;
-  border:1px solid var(--line);background:var(--bg-1);
-  background-image:radial-gradient(circle at center, rgba(240,180,76,.10) .8px, transparent 1px);
-  background-size:7px 7px;
-}
-.field-wrap.on{background-image:none;background:var(--bg-1)}
-@media (max-width:640px){ .field-wrap{aspect-ratio:4/3} }
-#field{
-  margin:0;font-family:var(--mono);font-weight:400;
-  font-size:6px;line-height:1;letter-spacing:0;
-  white-space:pre;color:rgba(240,180,76,.3);
-  -webkit-user-select:none;user-select:none;
-}
-#field .d0{color:rgba(240,180,76,.17)}
-#field .d1{color:rgba(240,180,76,.44)}
-#field .d2{color:rgba(247,197,106,.9);text-shadow:0 0 7px rgba(240,180,76,.3)}
-
-/* The live site's scrim, carried over unchanged: a vertical wash that
-   seats the photograph into the navy, over an angled one that keeps the
-   left side dark enough for the headline. */
 .hero-scrim{
   position:absolute;inset:0;z-index:var(--z-scrim);pointer-events:none;
   background:
@@ -316,15 +292,13 @@ h1 .ln.muted{color:#A9BCD1}
 
 /* hero telemetry strip */
 .telemetry{
+  --tp:clamp(14px,1.8vw,22px);
   position:relative;z-index:var(--z-copy);
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));
   border-top:1px solid var(--line);
 }
-.telemetry div{padding:12px 12px 2px 0;border-right:1px solid var(--line)}
-/* Every cell but the first is preceded by a rule, and a figure set hard
-   against that rule reads as attached to it. The first cell keeps its left
-   edge on the page margin so the row still starts on the grid. */
-.telemetry div + div{padding-left:clamp(14px,1.8vw,24px)}
+.telemetry div{padding:12px var(--tp) 2px 0;border-right:1px solid var(--line)}
+.telemetry div + div{padding-left:var(--tp)}
 .telemetry div:last-child{border-right:0}
 .telemetry .v{
   font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;
@@ -517,7 +491,21 @@ h1 .ln.muted{color:#A9BCD1}
   color:var(--fg-3);
 }
 
-.bud{margin-top:clamp(22px,3.4vw,28px);display:grid;gap:0}
+.bud{margin-top:clamp(22px,3.4vw,28px);display:grid;gap:clamp(24px,3.4vw,32px) 38px;grid-template-columns:minmax(0,1fr)}
+/* The two columns are the two halves of the season, so each carries its own
+   heading, its own subtotal and its own colour. */
+.bud-cat{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  margin:0 0 2px;padding-bottom:9px;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3);
+}
+.bud-cat b{font-weight:400;font-size:.95rem;letter-spacing:0}
+.bud-build .bud-cat b,.bud-build .fill{color:var(--amber)}
+.bud-build .fill{background:var(--amber)}
+.bud-season .bud-cat b{color:var(--sky)}
+.bud-season .fill{background:var(--sky)}
+.sw{display:inline-block;width:9px;height:9px;margin-right:8px;vertical-align:baseline}
+.sw-gold{background:var(--amber)} .sw-blue{background:var(--sky)}
 .brow{padding:9px 0}
 .brow .line{display:flex;align-items:baseline;gap:12px}
 .brow .nmx{flex:1 1 auto;font-size:.87rem;color:var(--fg);min-width:0}
@@ -529,14 +517,14 @@ h1 .ln.muted{color:#A9BCD1}
   width:calc(var(--p) / 32 * 100%);
   transform-origin:left;
 }
-.brow:nth-child(even) .fill{background:var(--sky)}
+
 /* The bars ship at full width. `armed` is only ever set by script once it
    knows it has an observer to bring them back, so the figures are correct
    with JS off. */
 .bud.armed .brow .fill{transform:scaleX(0)}
 .bud.armed .brow.in .fill{transform:scaleX(1);transition:transform .8s var(--e-out) calc(var(--d) * 45ms)}
 @media (min-width:760px){
-  .bud{grid-template-columns:1fr 1fr;column-gap:38px}
+  .bud{grid-template-columns:1fr 1fr}
 }
 
 /* ---------- season gallery · carousel ---------- */
@@ -750,21 +738,9 @@ footer a:hover{color:var(--sky-hi)}
     </div>
   </section>
 
-  <!-- ============ 02 · BUILD GRID ============ -->
-  <section id="grid" aria-labelledby="h-grid">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 02</span><span class="rule" aria-hidden="true"></span><span class="opt">Build grid 104&times;60</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
-    <h2 id="h-grid">One machine, one character at a time.</h2>
-    <p class="lede">A student picked and wired every part on both robots. The drawing below works the same way, a machine built out of nothing but typed characters.</p>
-
-    <figure class="fig">
-      <div class="field-wrap" id="field-wrap" aria-hidden="true"><pre id="field"></pre></div>
-      <figcaption><span class="t">Drivetrain, mast, arm and intake, plotted on a 104&times;60 grid</span><span class="n">Fig 01</span></figcaption>
-    </figure>
-  </section>
-
-  <!-- ============ 03 · THE TWO TEAMS ============ -->
+  <!-- ============ 02 · THE TWO TEAMS ============ -->
   <section id="teams" aria-labelledby="h-teams">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 03</span><span class="rule" aria-hidden="true"></span><span class="opt">Team registry · 27964 / 32514</span><span class="rule" aria-hidden="true"></span><span>Teams 02</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 02</span><span class="rule" aria-hidden="true"></span><span class="opt">Team registry · 27964 / 32514</span><span class="rule" aria-hidden="true"></span><span>Teams 02</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-teams">One shop. Two teams.</h2>
     <p class="lede">Both teams share one build space and one set of standards, so twice as many students get to make something and take it to a field. CyberLyons started in 2024, and MechLyons showed a year later that the model scaled.</p>
 
@@ -791,9 +767,9 @@ footer a:hover{color:var(--sky-hi)}
     </div>
   </section>
 
-  <!-- ============ 04 · SEASON PHOTOS ============ -->
+  <!-- ============ 03 · SEASON PHOTOS ============ -->
   <section id="season" aria-labelledby="h-season">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 04</span><span class="rule" aria-hidden="true"></span><span class="opt">Field record · Fig. 02-07</span><span class="rule" aria-hidden="true"></span><span>Sheet 01</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 03</span><span class="rule" aria-hidden="true"></span><span class="opt">Field record · Fig. 01-06</span><span class="rule" aria-hidden="true"></span><span>Sheet 01</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-season">The season on the record.</h2>
     <p class="lede">Competitions and classrooms, plus the long nights between them. Students run all of it.</p>
 
@@ -813,50 +789,50 @@ footer a:hover{color:var(--sky-hi)}
           <div class="frame">
             <img src="images/portfolio/gallery/qualifier.jpg" alt="Both WLMAC teams at the February 2026 Toronto qualifier with their robots at the field" width="1000" height="562" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">February 2026 Qualifier, Toronto · both teams brought robots to the field</span><span class="n">Fig 02</span></figcaption>
+          <figcaption><span class="t">February 2026 Qualifier, Toronto · both teams brought robots to the field</span><span class="n">Fig 01</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/club-crawl.jpg" alt="Grade 9 Night, robotics introduced to incoming students and families" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Grade 9 Night · 100+ incoming students</span><span class="n">Fig 03</span></figcaption>
+          <figcaption><span class="t">Grade 9 Night · 100+ incoming students</span><span class="n">Fig 02</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/outreach-event1.jpg" alt="Library Open House with students building, driving and programming projects" width="1000" height="1328" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Library Open House · 50+ builders</span><span class="n">Fig 04</span></figcaption>
+          <figcaption><span class="t">Library Open House · 50+ builders</span><span class="n">Fig 03</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/mseo-classroom.jpg" alt="Science and Engineering Olympics 2026 classroom session with middle school students" width="1000" height="750" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">MSEO 2026 · 30+ middle schools</span><span class="n">Fig 05</span></figcaption>
+          <figcaption><span class="t">MSEO 2026 · 30+ middle schools</span><span class="n">Fig 04</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/nych-yorkdale.jpg" alt="NYCH Yorkdale workshop with students building Arduino projects" width="1000" height="750" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">NYCH Yorkdale · 60+ Arduino builds</span><span class="n">Fig 06</span></figcaption>
+          <figcaption><span class="t">NYCH Yorkdale · 60+ Arduino builds</span><span class="n">Fig 05</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/dublinevent.jpg" alt="Dublin Heights elementary students at their first hands-on engineering session" width="1000" height="750" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Dublin Heights · first hands-on build</span><span class="n">Fig 07</span></figcaption>
+          <figcaption><span class="t">Dublin Heights · first hands-on build</span><span class="n">Fig 06</span></figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============ 05 · STATS ============ -->
+  <!-- ============ 04 · STATS ============ -->
   <section id="stats" aria-labelledby="h-stats">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 05</span><span class="rule" aria-hidden="true"></span><span class="opt">Program telemetry</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 04</span><span class="rule" aria-hidden="true"></span><span class="opt">Program telemetry</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-stats">The program, in figures.</h2>
 
     <div class="ledger">
@@ -893,9 +869,9 @@ footer a:hover{color:var(--sky-hi)}
     </div>
   </section>
 
-  <!-- ============ 06 · WHAT SPONSORS GET ============ -->
+  <!-- ============ 05 · WHAT SPONSORS GET ============ -->
   <section id="value" aria-labelledby="h-value">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 06</span><span class="rule" aria-hidden="true"></span><span class="opt">Placement channels</span><span class="rule" aria-hidden="true"></span><span>CH 01-03</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 05</span><span class="rule" aria-hidden="true"></span><span class="opt">Placement channels</span><span class="rule" aria-hidden="true"></span><span>CH 01-03</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-value">What a partner actually gets.</h2>
     <p class="lede">Your name goes on a machine that gets photographed all season, on the students driving it, and in front of a school of 1,400.</p>
 
@@ -905,7 +881,7 @@ footer a:hover{color:var(--sky-hi)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/hero-bg.jpg" alt="Both WLMAC robots staged on a competition field before a match" width="1920" height="1446" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Both robots, field staging</span><span class="n">Fig 08</span></figcaption>
+          <figcaption><span class="t">Both robots, field staging</span><span class="n">Fig 07</span></figcaption>
         </figure>
         <div>
           <h3><span class="ix">Robot · every match</span>Logo on a competing robot</h3>
@@ -922,7 +898,7 @@ footer a:hover{color:var(--sky-hi)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/about-photo.jpg" alt="The full WLMAC Robotics roster in blue team shirts with both robots in the school gym" width="1400" height="781" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Full roster, both robots</span><span class="n">Fig 09</span></figcaption>
+          <figcaption><span class="t">Full roster, both robots</span><span class="n">Fig 08</span></figcaption>
         </figure>
       </div>
 
@@ -931,7 +907,7 @@ footer a:hover{color:var(--sky-hi)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/portfolio/gallery/robot-bench.jpg" alt="Course fair display on campus with a robot on the bench and students gathered around" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Course fair, campus</span><span class="n">Fig 10</span></figcaption>
+          <figcaption><span class="t">Course fair, campus</span><span class="n">Fig 09</span></figcaption>
         </figure>
         <div>
           <h3><span class="ix">Campus · 1,400 students</span>Campus and social reach</h3>
@@ -941,9 +917,9 @@ footer a:hover{color:var(--sky-hi)}
     </div>
   </section>
 
-  <!-- ============ 07 · TIERS ============ -->
+  <!-- ============ 06 · TIERS ============ -->
   <section id="tiers" aria-labelledby="h-tiers">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 07</span><span class="rule" aria-hidden="true"></span><span class="opt">Partner tiers · CAD</span><span class="rule" aria-hidden="true"></span><span>Range 200-1500+</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 06</span><span class="rule" aria-hidden="true"></span><span class="opt">Partner tiers · CAD</span><span class="rule" aria-hidden="true"></span><span>Range 200-1500+</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-tiers">Three ways in.</h2>
     <p class="lede">Every tier includes everything below it. Pick the one that fits the budget you already have.</p>
 
@@ -989,22 +965,21 @@ footer a:hover{color:var(--sky-hi)}
           <div class="frame" style="aspect-ratio:5/4">
             <img src="images/portfolio/gallery/robot-decode.jpg" alt="MechLyons robot lined up at the goal during a DECODE season match" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Flagship placement zone</span><span class="n">Fig 11</span></figcaption>
-        </figure>
+                  </figure>
       </article>
     </div>
 
     <p class="inkind"><b>In-kind counts.</b> Donated parts, tools, machine time or services offset cash at equal value and land you in the same tier.</p>
   </section>
 
-  <!-- ============ 08 · BUDGET ============ -->
+  <!-- ============ 07 · BUDGET ============ -->
   <section id="budget" aria-labelledby="h-budget">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 08</span><span class="rule" aria-hidden="true"></span><span class="opt">Allocation map · 10 lines</span><span class="rule" aria-hidden="true"></span><span>CAD</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 07</span><span class="rule" aria-hidden="true"></span><span class="opt">Allocation map · 10 lines</span><span class="rule" aria-hidden="true"></span><span>CAD</span><span class="reg" aria-hidden="true"></span></p>
 
     <div class="bud-head">
       <div>
         <h2 id="h-budget">The whole $10,000, line by line.</h2>
-        <p class="lede">This is the real season plan. Sponsorship goes against these lines and nothing else.</p>
+        <p class="lede">This is the real season plan. Sponsorship goes against these lines and nothing else, and just under two thirds of it builds the machines.</p>
       </div>
       <div class="bud-total">
         <p class="t num">$10,000</p>
@@ -1012,37 +987,43 @@ footer a:hover{color:var(--sky-hi)}
       </div>
     </div>
 
-    <div class="strip" role="img" aria-label="Stacked allocation strip showing the ten budget lines in proportion">
-      <i style="flex:600;background:hsl(38 70% 62%)"></i>
-      <i style="flex:1000;background:hsl(38 68% 56%)"></i>
-      <i style="flex:3200;background:hsl(38 72% 50%)"></i>
-      <i style="flex:1400;background:hsl(38 62% 44%)"></i>
-      <i style="flex:1200;background:hsl(38 56% 39%)"></i>
-      <i style="flex:600;background:hsl(38 50% 34%)"></i>
-      <i style="flex:800;background:hsl(38 44% 30%)"></i>
-      <i style="flex:400;background:hsl(38 38% 26%)"></i>
-      <i style="flex:400;background:hsl(38 32% 23%)"></i>
-      <i style="flex:400;background:hsl(38 26% 20%)"></i>
+    <div class="strip" role="img" aria-label="Allocation strip: $6,400 building the robots, then $3,600 running the season">
+      <i style="flex:3200;background:hsl(38 72% 56%)"></i>
+      <i style="flex:1400;background:hsl(38 66% 48%)"></i>
+      <i style="flex:1200;background:hsl(38 60% 41%)"></i>
+      <i style="flex:600;background:hsl(38 54% 35%)"></i>
+      <i style="flex:1000;background:hsl(212 68% 66%)"></i>
+      <i style="flex:800;background:hsl(212 62% 58%)"></i>
+      <i style="flex:600;background:hsl(212 56% 50%)"></i>
+      <i style="flex:400;background:hsl(212 50% 43%)"></i>
+      <i style="flex:400;background:hsl(212 44% 37%)"></i>
+      <i style="flex:400;background:hsl(212 38% 31%)"></i>
     </div>
-    <p class="striplabels"><span>0</span><span>5,000</span><span>10,000</span></p>
+    <p class="striplabels"><span><i class="sw sw-gold" aria-hidden="true"></i>Building the robots &middot; $6,400</span><span><i class="sw sw-blue" aria-hidden="true"></i>Running the season &middot; $3,600</span></p>
 
     <div class="bud" id="budget-list">
-      <div class="brow" style="--p:6;--d:0"><div class="line"><span class="nmx">FTC team registration, 2 teams</span><span class="pct">6.0%</span><span class="amtx">$600</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:10;--d:1"><div class="line"><span class="nmx">Qualifier and event entry fees</span><span class="pct">10.0%</span><span class="amtx">$1,000</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:32;--d:2"><div class="line"><span class="nmx">Robot parts and hardware, 2 robots</span><span class="pct">32.0%</span><span class="amtx">$3,200</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:14;--d:3"><div class="line"><span class="nmx">Control system and electronics</span><span class="pct">14.0%</span><span class="amtx">$1,400</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:12;--d:4"><div class="line"><span class="nmx">Fabrication and prototyping materials</span><span class="pct">12.0%</span><span class="amtx">$1,200</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:6;--d:5"><div class="line"><span class="nmx">Tools and build-space supplies</span><span class="pct">6.0%</span><span class="amtx">$600</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:8;--d:6"><div class="line"><span class="nmx">Team apparel and sponsor branding</span><span class="pct">8.0%</span><span class="amtx">$800</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:4;--d:7"><div class="line"><span class="nmx">Pit display and presentation</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:4;--d:8"><div class="line"><span class="nmx">Outreach and demo supplies</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
-      <div class="brow" style="--p:4;--d:9"><div class="line"><span class="nmx">Travel and competition days</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="bud-col bud-build">
+        <p class="bud-cat"><span>Building the robots</span><b class="num">$6,400</b></p>
+        <div class="brow" style="--p:32;--d:0"><div class="line"><span class="nmx">Robot parts and hardware, 2 robots</span><span class="pct">32.0%</span><span class="amtx">$3,200</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:14;--d:1"><div class="line"><span class="nmx">Control system and electronics</span><span class="pct">14.0%</span><span class="amtx">$1,400</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:12;--d:2"><div class="line"><span class="nmx">Fabrication and prototyping materials</span><span class="pct">12.0%</span><span class="amtx">$1,200</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:6;--d:3"><div class="line"><span class="nmx">Tools and build-space supplies</span><span class="pct">6.0%</span><span class="amtx">$600</span></div><div class="track"><i class="fill"></i></div></div>
+      </div>
+      <div class="bud-col bud-season">
+        <p class="bud-cat"><span>Running the season</span><b class="num">$3,600</b></p>
+        <div class="brow" style="--p:10;--d:4"><div class="line"><span class="nmx">Qualifier and event entry fees</span><span class="pct">10.0%</span><span class="amtx">$1,000</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:8;--d:5"><div class="line"><span class="nmx">Team apparel and sponsor branding</span><span class="pct">8.0%</span><span class="amtx">$800</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:6;--d:6"><div class="line"><span class="nmx">FTC team registration, 2 teams</span><span class="pct">6.0%</span><span class="amtx">$600</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:4;--d:7"><div class="line"><span class="nmx">Pit display and presentation</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:4;--d:8"><div class="line"><span class="nmx">Outreach and demo supplies</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
+        <div class="brow" style="--p:4;--d:9"><div class="line"><span class="nmx">Travel and competition days</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ 09 · CONTACT ============ -->
+  <!-- ============ 08 · CONTACT ============ -->
   <section id="contact" aria-labelledby="h-contact">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 09</span><span class="rule" aria-hidden="true"></span><span class="opt">Station WLMAC-001</span><span class="rule" aria-hidden="true"></span><span>Open channel</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 08</span><span class="rule" aria-hidden="true"></span><span class="opt">Station WLMAC-001</span><span class="rule" aria-hidden="true"></span><span>Open channel</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-contact">Start the conversation.</h2>
     <p class="lede">Cheque or e-transfer, and everything in writing first. No pressure, no boilerplate deck.</p>
 
@@ -1139,226 +1120,6 @@ footer a:hover{color:var(--sky-hi)}
   var raf = (typeof window.requestAnimationFrame === 'function')
     ? function(fn){ return window.requestAnimationFrame(fn); }
     : function(fn){ return setTimeout(function(){ fn(Date.now()); }, 16); };
-
-  /* ============================================================
-     CHARACTER FIELD · 104 x 60
-     Density maps to brightness. Signed-distance shapes describe a
-     drivetrain, wheels, mast, arm and the scoring structure on the
-     field. No randomness that is not seeded, so the settle animation
-     converges to exactly the same plate every time.
-  ============================================================ */
-  var COLS = 104, ROWS = 60, CELLW = 0.6;
-  var RAMP = [' ', '.', ':', '-', '+', '*', '#', '0', '@'];
-
-  function hash(x, y){
-    var s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
-    return s - Math.floor(s);
-  }
-  function sdBox(px, py, cx, cy, hw, hh){
-    var dx = Math.abs(px - cx) - hw, dy = Math.abs(py - cy) - hh;
-    var ax = dx > 0 ? dx : 0, ay = dy > 0 ? dy : 0;
-    return Math.sqrt(ax * ax + ay * ay) + Math.min(Math.max(dx, dy), 0);
-  }
-  function sdCirc(px, py, cx, cy, r){
-    var dx = px - cx, dy = py - cy;
-    return Math.sqrt(dx * dx + dy * dy) - r;
-  }
-  function sdRing(px, py, cx, cy, r, t){
-    var dx = px - cx, dy = py - cy;
-    return Math.abs(Math.sqrt(dx * dx + dy * dy) - r) - t;
-  }
-  function sdSeg(px, py, ax, ay, bx, by, t){
-    var pax = px - ax, pay = py - ay, bax = bx - ax, bay = by - ay;
-    var h = (pax * bax + pay * bay) / (bax * bax + bay * bay);
-    h = h < 0 ? 0 : (h > 1 ? 1 : h);
-    var dx = pax - bax * h, dy = pay - bay * h;
-    return Math.sqrt(dx * dx + dy * dy) - t;
-  }
-
-  function level(c, r){
-    var px = c * CELLW, py = r;
-
-    /* robot */
-    var d = sdBox(px, py, 36, 41, 13, 4.6);              /* chassis */
-    d = Math.min(d, sdBox(px, py, 36, 46.6, 15, 1.0));   /* bumper */
-    d = Math.min(d, sdRing(px, py, 25, 45.6, 4.3, 1.25));/* wheel L */
-    d = Math.min(d, sdCirc(px, py, 25, 45.6, 1.4));
-    d = Math.min(d, sdRing(px, py, 47, 45.6, 4.3, 1.25));/* wheel R */
-    d = Math.min(d, sdCirc(px, py, 47, 45.6, 1.4));
-    d = Math.min(d, sdBox(px, py, 33, 27, 3.1, 10));     /* mast */
-    d = Math.min(d, sdBox(px, py, 33, 18.4, 7.4, 1.0));  /* top brace */
-    d = Math.min(d, sdSeg(px, py, 35, 22, 52.5, 12.5, 1.25)); /* arm */
-    d = Math.min(d, sdBox(px, py, 54.5, 11, 3.1, 2.3));  /* intake head */
-    d = Math.min(d, sdCirc(px, py, 33, 15.4, 1.9));      /* sensor */
-
-    /* field structure, one density step back */
-    var g = sdBox(px, py, 11, 33, 0.85, 15);
-    g = Math.min(g, sdRing(px, py, 11, 19, 4.5, 0.85));
-    g = Math.min(g, sdBox(px, py, 11, 48.4, 4.4, 0.85));
-
-    var b;
-    if (d < 0){
-      if (d > -1.35) { b = 0.97; }
-      else {
-        var tex = Math.sin(px * 0.85) * Math.sin(py * 0.75);
-        b = 0.44 + 0.20 * tex;
-      }
-    } else if (g < 0){
-      b = g > -0.95 ? 0.62 : 0.30;
-    } else {
-      var dd = d < g ? d : g;
-      b = 0.13 * Math.exp(-dd * 0.30);
-      if (py > 47.5){
-        var pr = (py - 47.5) / 12.5; if (pr > 1) pr = 1;
-        if (((c + (r % 2) * 4) % 9) < 1) b = Math.max(b, 0.13 + 0.24 * pr);
-        if (r % 3 === 0) b = Math.max(b, 0.05 + 0.15 * pr);
-      }
-      if (py < 15 && ((c * 7 + r * 13) % 41) < 1) b = Math.max(b, 0.22);
-    }
-
-    b += (hash(c, r) - 0.5) * 0.10;
-
-    /* The plate stands on its own now, so the drawing is even across the
-       grid -- no headline to keep clear of. Only the outermost rows and
-       columns are eased off, so the field meets its frame rather than
-       being cut by it. */
-    var u = c / COLS, v = r / ROWS;
-    var edge = Math.min(u, 1 - u, v, 1 - v) / 0.06;
-    if (edge < 1) b *= 0.25 + 0.75 * (edge < 0 ? 0 : edge);
-
-    var i = Math.round(b * 8);
-    return i < 0 ? 0 : (i > 8 ? 8 : i);
-  }
-
-  var FINAL = null;
-  function computeFinal(){
-    FINAL = new Uint8Array(COLS * ROWS);
-    for (var r = 0; r < ROWS; r++){
-      for (var c = 0; c < COLS; c++){ FINAL[r * COLS + c] = level(c, r); }
-    }
-  }
-
-  function bucket(i){ return i <= 2 ? 'd0' : (i <= 5 ? 'd1' : 'd2'); }
-
-  function paint(pre, p){
-    var out = '', run = '', cls = '', i, k, idx, ch;
-    for (var r = 0; r < ROWS; r++){
-      for (var c = 0; c < COLS; c++){
-        i = r * COLS + c;
-        if (p >= 1){
-          idx = FINAL[i];
-        } else {
-          var th = 0.12 + 0.88 * hash(c * 1.7 + 5, r * 0.9 + 11);
-          var wave = (r / ROWS) * 0.3;
-          if (p * 1.45 - wave > th){
-            idx = FINAL[i];
-          } else {
-            var n = hash(c + p * 97, r - p * 53);
-            idx = n < 0.62 ? 0 : (n < 0.84 ? 1 : (n < 0.95 ? 2 : 4));
-          }
-        }
-        k = bucket(idx);
-        ch = RAMP[idx];
-        if (k !== cls){
-          if (run) out += '<span class="' + cls + '">' + run + '</span>';
-          run = ''; cls = k;
-        }
-        run += ch;
-      }
-      if (r < ROWS - 1) run += '\n';
-    }
-    if (run) out += '<span class="' + cls + '">' + run + '</span>';
-    pre.innerHTML = out;
-  }
-
-  var advance = 0.6;
-  function measureAdvance(){
-    var m = document.createElement('span');
-    m.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;white-space:pre;' +
-      'font:400 100px "Azeret Mono", ui-monospace, monospace;letter-spacing:0;';
-    var s = ''; for (var i = 0; i < 50; i++){ s += '0'; }
-    m.textContent = s;
-    document.body.appendChild(m);
-    var w = m.getBoundingClientRect().width;
-    if (m.parentNode) m.parentNode.removeChild(m);
-    if (w > 0) advance = w / 50 / 100;
-  }
-
-  function fit(){
-    var pre = document.getElementById('field');
-    var wrap = document.getElementById('field-wrap');
-    if (!pre || !wrap) return;
-    var w = wrap.clientWidth, h = wrap.clientHeight;
-    if (!w || !h) return;
-    var byW = w / (COLS * advance);
-    var byH = h / ROWS;
-    /* Contained in its own plate now, so the whole grid has to fit inside
-       the frame rather than overscaling to bleed past it. */
-    var fs = Math.min(byH, byW);
-    if (!isFinite(fs) || fs < 3) fs = 3;
-    pre.style.fontSize = fs.toFixed(3) + 'px';
-  }
-
-  function initField(){
-    var pre = document.getElementById('field');
-    var wrap = document.getElementById('field-wrap');
-    if (!pre || !wrap) return;
-
-    computeFinal();
-    measureAdvance();
-    fit();
-    wrap.classList.add('on');
-
-    if (reduceMotion){
-      paint(pre, 1);
-    } else {
-      /* The settle is an enhancement, never a gate. A timer, not a frame
-         callback, owns the finished plate: rAF does not fire in hidden
-         tabs or non-compositing renderers, and the plate must still land. */
-      var DUR = 1150, settled = false, start = 0, last = -1;
-      var finalize = function(){
-        if (settled) return;
-        settled = true;
-        paint(pre, 1);
-      };
-      var guard = setTimeout(finalize, DUR + 420);
-      var step = function(ts){
-        if (settled) return;
-        if (!start) start = ts;
-        var p = (ts - start) / DUR;
-        if (p >= 1){ clearTimeout(guard); finalize(); return; }
-        /* cap repaints: the grid is 6,240 cells */
-        var frame = Math.floor(p * 26);
-        if (frame !== last){ last = frame; paint(pre, p); }
-        raf(step);
-      };
-      paint(pre, 0);
-      raf(step);
-    }
-
-    /* ResizeObserver, not the window resize event: this page is judged
-       inside an iframe, and the frame can change size without the window
-       ever firing resize. */
-    var t = null;
-    var refit = function(){
-      if (t) clearTimeout(t);
-      t = setTimeout(fit, 100);
-    };
-    if (typeof ResizeObserver === 'function'){
-      try { new ResizeObserver(refit).observe(wrap); } catch (e) {}
-    }
-    window.addEventListener('resize', refit);
-
-    /* The advance width is measured from the loaded webfont; if it lands
-       after first paint the grid must be re-fitted. Timers are the one
-       callback channel that survives every renderer. */
-    var remeasure = function(){ measureAdvance(); fit(); };
-    if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function'){
-      document.fonts.ready.then(remeasure)['catch'](function(){});
-    }
-    setTimeout(remeasure, 400);
-    setTimeout(remeasure, 1400);
-  }
 
   /* ============================================================
      BUDGET BARS · wipe in on first view.
@@ -1883,7 +1644,6 @@ footer a:hover{color:var(--sky-hi)}
     safely(initForm);
     safely(initCaptcha);
     safely(initChrome);
-    safely(initField);
     safely(initBudget);
     safely(initGallery);
     safely(initUnderline);
