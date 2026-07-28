@@ -1,0 +1,1745 @@
+<!-- STYLE: data-texture | SKILL: merged (impeccable structure + taste-v2 stamps & budget) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WLMAC Robotics · FTC Sponsorship · Season 2026/27</title>
+<meta name="description" content="Two student-run FTC teams at William Lyon Mackenzie CI. A $10,000 season, itemized. The founding-partner spots are still open.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..900;1,75..125,400..900&family=Azeret+Mono:wght@300..700&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   WLMAC ROBOTICS · SPONSORSHIP SHEET
+   Instrument-panel / character-grid telemetry.
+   Surface: warm near-black. One accent: amber.
+   Alliance blue + red appear once, on the two team plates only.
+
+   Merge notes:
+   - Structure, hero, plates 02-05 and 07-08 come from the impeccable build.
+   - The three-part plate stamps and the plate 06 budget come from taste v2.
+   - Photographs carry no overlay screen: the frame is a hairline, nothing
+     is printed on top of the image.
+------------------------------------------------------------------ */
+
+:root{
+  --bg:#0E0D0B;
+  --bg-1:#141210;
+  --bg-2:#1A1712;
+  --line:#2E2820;
+  --line-hi:#4A4234;
+  --fg:#F2ECE0;
+  --fg-2:#B6AC99;
+  --fg-3:#8E8474;
+  --amber:#E0A83C;
+  --amber-hi:#F2C669;
+  --amber-dim:rgba(224,168,60,.16);
+  --on-amber:#151006;
+  --blue:#1D46C0;
+  --blue-deep:#152F7E;
+  --red:#B4301C;
+  --red-deep:#7C1F11;
+
+  --mono:"Azeret Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --disp:"Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  --pad:clamp(14px, 3.4vw, 40px);
+  --gap:clamp(28px, 5vw, 64px);
+
+  --e-out:cubic-bezier(.16,1,.3,1);
+
+  --z-base:0; --z-field:1; --z-scrim:2; --z-copy:3; --z-mark:4; --z-bar:8;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:76px}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 100,"wght" 400;
+  font-size:clamp(15px,1.05rem,17px);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+img{max-width:100%;display:block}
+a{color:inherit}
+:where(a,button,input,select,textarea):focus-visible{
+  outline:2px solid var(--amber-hi);
+  outline-offset:3px;
+}
+
+.mono{font-family:var(--mono);font-weight:400;letter-spacing:.06em;text-transform:uppercase}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;letter-spacing:0}
+
+/* ---------- sheet frame ---------- */
+.sheet{
+  position:relative;
+  width:min(100% - clamp(12px,3vw,34px), 1240px);
+  margin-inline:auto;
+  margin-block:clamp(10px,2.2vw,22px);
+  border:1px solid var(--line);
+  background:var(--bg);
+}
+.corner{position:absolute;width:15px;height:15px;z-index:var(--z-mark);pointer-events:none}
+.corner.tl{top:-8px;left:-8px} .corner.tr{top:-8px;right:-8px}
+.corner.bl{bottom:-8px;left:-8px} .corner.br{bottom:-8px;right:-8px}
+
+.reg{position:relative;display:inline-block;width:11px;height:11px;flex:none;vertical-align:middle}
+.corner .reg,.corner{display:block}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--line-hi)}
+.reg::before{left:50%;top:0;width:1px;height:100%;transform:translateX(-.5px)}
+.reg::after{top:50%;left:0;height:1px;width:100%;transform:translateY(-.5px)}
+.corner .reg{width:15px;height:15px}
+
+/* margin rails (wide viewports only) */
+.rail{
+  position:absolute;top:0;bottom:0;width:26px;
+  display:none;pointer-events:none;z-index:var(--z-mark);
+}
+.rail span{
+  position:absolute;left:50%;transform:translateX(-50%);
+  writing-mode:vertical-rl;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--fg-3);white-space:nowrap;
+}
+.rail.l{left:-30px} .rail.r{right:-30px}
+.rail.l span{top:14%} .rail.r span{bottom:14%;writing-mode:vertical-rl;transform:translateX(-50%) rotate(180deg)}
+@media (min-width:1340px){ .rail{display:block} }
+
+/* ---------- top bar · sticky, stays legible over anything it crosses ---------- */
+.topbar{
+  position:sticky;top:0;z-index:var(--z-bar);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px var(--pad);
+  border-bottom:1px solid var(--line);
+  background:rgba(14,13,11,.72);
+  -webkit-backdrop-filter:blur(10px) saturate(1.2);
+  backdrop-filter:blur(10px) saturate(1.2);
+  transition:background-color .3s var(--e-out), border-color .3s var(--e-out), box-shadow .3s var(--e-out);
+}
+.topbar.stuck{
+  background:rgba(14,13,11,.94);
+  border-bottom-color:var(--line-hi);
+  box-shadow:0 14px 30px -22px rgba(0,0,0,.95);
+}
+/* A renderer with no backdrop filter must not get a see-through bar. */
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+  .topbar,.topbar.stuck{background:var(--bg)}
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand img{width:118px;height:auto;opacity:.96}
+.brand .tag{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--fg-3);border-left:1px solid var(--line);padding-left:10px;white-space:nowrap;
+}
+@media (max-width:430px){ .brand .tag{display:none} .brand img{width:100px} }
+
+.top-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg);text-decoration:none;
+  border:1px solid var(--line-hi);padding:8px 12px;background:transparent;white-space:nowrap;
+  transition:border-color .3s var(--e-out), background-color .3s var(--e-out), color .3s var(--e-out);
+}
+.top-cta:hover{border-color:var(--amber);color:var(--amber-hi);background:rgba(224,168,60,.07)}
+.dot{width:6px;height:6px;background:var(--amber);flex:none}
+@media (prefers-reduced-motion: no-preference){
+  .dot{animation:blink 1.6s steps(1,end) infinite}
+}
+@keyframes blink{0%,60%{opacity:1}61%,100%{opacity:.25}}
+@media (max-width:400px){ .top-cta{font-size:9px;padding:7px 9px;letter-spacing:.1em} }
+
+/* ---------- section furniture ---------- */
+section{position:relative;padding:var(--gap) var(--pad);border-top:1px solid var(--line)}
+#hero{border-top:0}
+
+/* Plate stamp · the three-part instrument header, taste v2.
+   ID · descriptor · reading, ruled between each. */
+.stamp{
+  display:flex;align-items:center;gap:10px;
+  margin:0 0 clamp(18px,3vw,30px);
+  font-family:var(--mono);font-size:10px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg-3);
+}
+.stamp span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.stamp .id{color:var(--amber);flex:none}
+.stamp .rule{flex:1 1 auto;height:1px;background:var(--line);min-width:12px;overflow:visible}
+.stamp .reg{flex:none}
+@media (max-width:560px){
+  .stamp{font-size:9px;letter-spacing:.12em;gap:8px}
+  .stamp .opt,.stamp .opt + .rule{display:none}
+}
+
+h2{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 104,"wght" 830;
+  font-size:clamp(1.55rem,5.2vw,2.6rem);
+  line-height:1.02;letter-spacing:-.025em;
+  margin:0 0 .55em;text-wrap:balance;
+  color:var(--fg);
+}
+.lede{
+  max-width:62ch;color:var(--fg-2);margin:0 0 clamp(22px,3.4vw,36px);
+  font-size:clamp(.98rem,2.6vw,1.06rem);text-wrap:pretty;
+}
+.lede strong{color:var(--fg);font-variation-settings:"wght" 620}
+
+/* ---------- hero ---------- */
+#hero{
+  position:relative;overflow:hidden;
+  padding-top:clamp(20px,4vw,34px);
+  padding-bottom:clamp(26px,5vw,52px);
+  min-height:min(84vh,660px);
+  display:flex;flex-direction:column;justify-content:flex-start;
+}
+#hero .stamp{position:relative;z-index:var(--z-copy);margin-bottom:0}
+.field-wrap{
+  position:absolute;inset:0;z-index:var(--z-field);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;pointer-events:none;
+  background-image:radial-gradient(circle at center, rgba(224,168,60,.10) .8px, transparent 1px);
+  background-size:7px 7px;
+}
+.field-wrap.on{background-image:none}
+#field{
+  margin:0;font-family:var(--mono);font-weight:400;
+  font-size:6px;line-height:1;letter-spacing:0;
+  white-space:pre;color:rgba(224,168,60,.3);
+  -webkit-user-select:none;user-select:none;
+}
+#field .d0{color:rgba(224,168,60,.17)}
+#field .d1{color:rgba(224,168,60,.44)}
+#field .d2{color:rgba(243,205,132,.82);text-shadow:0 0 7px rgba(224,168,60,.3)}
+
+.hero-scrim{
+  position:absolute;inset:0;z-index:var(--z-scrim);pointer-events:none;
+  background:
+    /* Narrow viewports have no horizontal scrim, so the copy sits directly
+       over the brightest cells of the character field. These stops keep
+       every text/background pair above 4.5:1 while the grid still reads. */
+    linear-gradient(180deg, var(--bg) 0%, rgba(14,13,11,.88) 24%, rgba(14,13,11,.8) 60%, rgba(14,13,11,.96) 100%);
+}
+@media (min-width:900px){
+  .hero-scrim{
+    background:
+      linear-gradient(90deg, var(--bg) 0%, rgba(14,13,11,.95) 40%, rgba(14,13,11,.28) 74%, rgba(14,13,11,.6) 100%),
+      linear-gradient(180deg, rgba(14,13,11,.7) 0%, transparent 30%, rgba(14,13,11,.85) 100%);
+  }
+}
+.hero-copy{
+  position:relative;z-index:var(--z-copy);max-width:min(100%,720px);
+  margin-top:auto;padding-top:clamp(26px,6vw,72px);
+}
+
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 clamp(14px,2.4vw,20px);
+}
+.eyebrow .dash{width:clamp(26px,7vw,54px);height:1px;background:var(--amber);flex:none}
+.eyebrow .sep{color:var(--fg-3)}
+@media (max-width:400px){ .eyebrow{font-size:9px;letter-spacing:.13em} }
+
+h1{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 102,"wght" 880;
+  font-size:clamp(2.15rem,8.4vw,4.5rem);
+  line-height:.98;letter-spacing:-.032em;
+  margin:0 0 clamp(16px,2.6vw,24px);
+  color:var(--fg);
+}
+h1 .ln{display:block}
+h1 .ln.muted{color:#C9C1B2}
+.acc{
+  position:relative;display:inline-block;
+  font-style:italic;font-variation-settings:"wdth" 100,"wght" 880;
+  color:var(--amber);padding-bottom:.06em;
+}
+.acc .ul{
+  position:absolute;left:-2%;bottom:-.02em;width:104%;height:.24em;overflow:visible;
+}
+.acc .ul path{
+  fill:none;stroke:var(--amber);stroke-width:2.6;stroke-linecap:round;
+  vector-effect:non-scaling-stroke;
+  /* Drawn by default. The draw-on is attached from script only once a
+     frame has actually fired, so a renderer with a frozen animation
+     clock still shows the finished rule instead of an empty one. */
+  stroke-dasharray:220;stroke-dashoffset:0;
+}
+.acc .ul path.draw{animation:draw 1s var(--e-out) .15s backwards}
+@keyframes draw{from{stroke-dashoffset:220}to{stroke-dashoffset:0}}
+
+.hero-deck{
+  max-width:46ch;color:var(--fg-2);margin:0 0 clamp(20px,3vw,28px);
+  font-size:clamp(.95rem,2.7vw,1.05rem);text-wrap:pretty;
+}
+.hero-deck b{color:var(--fg);font-variation-settings:"wght" 640}
+
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(22px,3.6vw,34px)}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  padding:13px 18px;text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color .3s var(--e-out), color .3s var(--e-out), border-color .3s var(--e-out), transform .3s var(--e-out);
+}
+.btn-primary{background:var(--amber);color:var(--on-amber);border-color:var(--amber);font-weight:600}
+.btn-primary:hover{background:var(--amber-hi);border-color:var(--amber-hi);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--fg);border-color:var(--line-hi)}
+.btn-ghost:hover{border-color:var(--fg-2);background:rgba(242,236,224,.05);transform:translateY(-1px)}
+@media (prefers-reduced-motion: reduce){ .btn:hover{transform:none} }
+
+/* hero telemetry strip */
+.telemetry{
+  position:relative;z-index:var(--z-copy);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));
+  border-top:1px solid var(--line);
+}
+.telemetry div{padding:12px 12px 2px 0;border-right:1px solid var(--line)}
+/* Every cell but the first is preceded by a rule, and a figure set hard
+   against that rule reads as attached to it. The first cell keeps its left
+   edge on the page margin so the row still starts on the grid. */
+.telemetry div + div{padding-left:clamp(14px,1.8vw,24px)}
+.telemetry div:last-child{border-right:0}
+.telemetry .v{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;
+  font-size:clamp(1.05rem,3.4vw,1.3rem);color:var(--amber);line-height:1.1;
+}
+.telemetry .k{
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fg-3);margin-top:5px;line-height:1.4;
+}
+
+/* ---------- team plates ---------- */
+.plates{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.plate-card{
+  position:relative;padding:18px 18px 16px;border:1px solid var(--line);
+  background:var(--bg-1);overflow:hidden;
+}
+.ink{
+  position:relative;padding:14px 14px 12px;margin:0 0 14px;overflow:hidden;
+  color:#FFFFFF;
+}
+.ink.blue{background:var(--blue)}
+.ink.red{background:var(--red)}
+.ink::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle at center, rgba(10,8,6,.5) 1px, transparent 1.35px);
+  background-size:5px 5px;mix-blend-mode:multiply;opacity:.85;
+}
+.ink > *{position:relative;z-index:1}
+.ink .team-no{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:700;
+  font-size:clamp(2rem,9vw,3.05rem);line-height:.94;letter-spacing:-.02em;
+  display:block;
+}
+.ink .team-name{
+  font-family:var(--disp);font-variation-settings:"wdth" 104,"wght" 800;
+  font-size:clamp(1.05rem,3.6vw,1.3rem);letter-spacing:-.01em;line-height:1.1;margin-top:6px;
+}
+.ink .ally{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  display:flex;justify-content:space-between;gap:8px;margin-bottom:10px;opacity:.92;
+}
+.plate-body{color:var(--fg-2);font-size:.95rem;margin:0;text-wrap:pretty}
+.plate-meta{
+  display:flex;justify-content:space-between;gap:10px;margin-top:14px;padding-top:10px;
+  border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3);
+}
+.plate-meta b{color:var(--amber);font-weight:400}
+
+/* ---------- stats ledger ---------- */
+.ledger{border-top:1px solid var(--line)}
+/* Each row is its own grid, so any content-sized track resolves per row and
+   the meters land in a different place on every line. The meter and value
+   tracks are therefore uniform: max-content is identical across rows (every
+   meter is 20 cells) and the value track is fixed, so the label track --
+   the only flexible one -- ends at the same x on every row. */
+.ledger .row{
+  display:grid;grid-template-columns:26px minmax(0,1fr) 4.5rem;align-items:baseline;gap:10px;
+  padding:13px 0;border-bottom:1px solid var(--line);
+}
+@media (min-width:640px){
+  .ledger .row{grid-template-columns:30px minmax(0,1fr) max-content 5.5rem;gap:14px}
+}
+.ledger .ix{font-family:var(--mono);font-size:10px;color:var(--fg-3);letter-spacing:.1em}
+.ledger .lbl{color:var(--fg);font-size:clamp(.95rem,2.6vw,1.05rem);text-wrap:pretty}
+.ledger .lbl small{display:block;color:var(--fg-3);font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;margin-top:3px}
+.ledger .meter{display:none;font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.04em;white-space:nowrap;overflow:hidden}
+.ledger .meter i{color:var(--line-hi);font-style:normal}
+@media (min-width:640px){ .ledger .meter{display:block} }
+.ledger .val{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;
+  font-size:clamp(1.15rem,4vw,1.5rem);color:var(--amber);text-align:right;line-height:1;
+}
+
+/* ---------- what sponsors get ---------- */
+.gets{display:grid;gap:0;border-top:1px solid var(--line)}
+.get{
+  display:grid;gap:16px 24px;padding:clamp(22px,3.4vw,34px) 0;border-bottom:1px solid var(--line);
+  grid-template-columns:1fr;
+}
+/* The photograph is the evidence on this plate, so it carries real width and
+   the row is allowed to grow as tall as that needs. */
+@media (min-width:560px){
+  .get{grid-template-columns:minmax(0,240px) minmax(0,1fr);align-items:start;column-gap:26px}
+  .get.flip{grid-template-columns:minmax(0,1fr) minmax(0,240px)}
+  .get.flip .fig{order:2}
+}
+@media (min-width:900px){
+  .get{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);column-gap:40px}
+  .get.flip{grid-template-columns:minmax(0,1fr) minmax(0,.8fr)}
+}
+.get h3{
+  font-family:var(--disp);font-variation-settings:"wdth" 102,"wght" 780;
+  font-size:clamp(1.1rem,3.4vw,1.35rem);line-height:1.14;letter-spacing:-.015em;margin:0 0 8px;
+}
+.get h3 .ix{
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--amber);
+  display:block;margin-bottom:7px;font-variation-settings:normal;font-weight:400;
+}
+.get p{margin:0;color:var(--fg-2);font-size:.97rem;max-width:60ch;text-wrap:pretty}
+
+/* ---------- figure plates (photography) ----------
+   No screen, no scanline, no corner tick, no duotone: the photographs run
+   in their own colour. The plate is the hairline frame and the caption. */
+.fig{margin:0;position:relative}
+.fig .frame{
+  position:relative;overflow:hidden;border:1px solid var(--line);background:var(--bg-2);
+}
+.fig img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s var(--e-out);
+}
+.fig:hover img{transform:scale(1.02)}
+@media (prefers-reduced-motion: reduce){ .fig:hover img{transform:none} }
+.fig figcaption{
+  display:flex;justify-content:space-between;gap:10px;padding-top:7px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--fg-3);line-height:1.5;
+}
+.fig figcaption .t{color:var(--fg-2);flex:1 1 auto}
+.fig figcaption .n{flex:none;color:var(--amber)}
+
+/* ---------- tiers ---------- */
+/* Two equal halves for Cub and Challenger, with the flagship spanning both
+   underneath. auto-fit produced four tracks here, so the two cards sat at a
+   quarter width each with the rest of the row empty. */
+.tiers{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:560px){ .tiers{grid-template-columns:minmax(0,1fr)} }
+.tier{border:1px solid var(--line);padding:18px;background:var(--bg-1);position:relative}
+.tier .t-id{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-3);
+  display:flex;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--line);
+}
+.tier h3{
+  font-family:var(--disp);font-variation-settings:"wdth" 104,"wght" 820;
+  font-size:clamp(1.25rem,4.4vw,1.6rem);letter-spacing:-.02em;line-height:1.05;margin:14px 0 4px;
+}
+.tier .price{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:1rem;color:var(--amber);
+  letter-spacing:.02em;margin-bottom:14px;
+}
+.bene{list-style:none;margin:0;padding:0}
+.bene li{
+  position:relative;padding:7px 0 7px 20px;border-top:1px solid var(--line);
+  color:var(--fg-2);font-size:.93rem;text-wrap:pretty;
+}
+.bene li::before{
+  content:"+";position:absolute;left:0;top:7px;
+  font-family:var(--mono);font-size:11px;color:var(--amber);
+}
+.bene li.carry{color:var(--fg-3);font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase}
+.bene li.carry::before{content:"=";color:var(--fg-3)}
+
+.tier-flag{
+  grid-column:1/-1;border:1px solid var(--amber);background:linear-gradient(180deg, rgba(224,168,60,.07), rgba(224,168,60,.02));
+  display:grid;gap:18px;grid-template-columns:1fr;padding:clamp(18px,3vw,26px);
+}
+@media (min-width:760px){ .tier-flag{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:start} }
+.tier-flag .t-id{color:var(--amber);border-bottom-color:rgba(224,168,60,.35)}
+.tier-flag h3{font-size:clamp(1.6rem,6vw,2.4rem)}
+.tier-flag .price{font-size:1.15rem;font-weight:600}
+.tier-flag .bene li{border-top-color:rgba(224,168,60,.2)}
+.tier-flag .bene li.hero-benefit{color:var(--fg);font-variation-settings:"wght" 620}
+.flag-note{
+  margin-top:14px;padding-top:12px;border-top:1px solid rgba(224,168,60,.25);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-3);
+}
+.inkind{
+  margin-top:16px;padding:12px 14px;border:1px solid var(--line);
+  color:var(--fg-2);font-size:.9rem;
+}
+.inkind b{color:var(--fg)}
+
+/* ---------- budget · taste v2 allocation map ---------- */
+.bud-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;
+}
+.bud-head > div:first-child{min-width:0;flex:1 1 320px}
+.bud-head .lede{margin-bottom:0}
+.bud-total{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;flex:none}
+.bud-total p{margin:0}
+.bud-total .t{font-size:clamp(2rem,6vw,2.9rem);font-weight:700;color:var(--amber);line-height:1;letter-spacing:-.03em}
+.bud-total .c{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-3);margin-top:6px}
+
+.strip{display:flex;width:100%;height:26px;margin-top:clamp(20px,3vw,26px);gap:1px;background:var(--line)}
+.strip i{display:block;height:100%}
+.striplabels{
+  display:flex;justify-content:space-between;margin:7px 0 0;
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fg-3);
+}
+
+.bud{margin-top:clamp(22px,3.4vw,28px);display:grid;gap:0}
+.brow{padding:9px 0}
+.brow .line{display:flex;align-items:baseline;gap:12px}
+.brow .nmx{flex:1 1 auto;font-size:.87rem;color:var(--fg);min-width:0}
+.brow .pct{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:10px;color:var(--fg-3);flex:none}
+.brow .amtx{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.88rem;color:var(--fg);flex:0 0 4.6em;text-align:right}
+.brow .track{margin-top:7px;height:5px;background:var(--line);overflow:hidden}
+.brow .fill{
+  display:block;height:100%;background:var(--amber);
+  width:calc(var(--p) / 32 * 100%);
+  transform-origin:left;
+}
+.brow:nth-child(even) .fill{background:#C48F2C}
+/* The bars ship at full width. `armed` is only ever set by script once it
+   knows it has an observer to bring them back, so the figures are correct
+   with JS off. */
+.bud.armed .brow .fill{transform:scaleX(0)}
+.bud.armed .brow.in .fill{transform:scaleX(1);transition:transform .8s var(--e-out) calc(var(--d) * 45ms)}
+@media (min-width:760px){
+  .bud{grid-template-columns:1fr 1fr;column-gap:38px}
+}
+
+/* ---------- season gallery · carousel ---------- */
+.gallery{position:relative}
+.gal-ctl{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.gal-count{
+  margin:0 auto 0 0;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-3);
+}
+.gal-count b{color:var(--amber);font-weight:400}
+.gal-btn{
+  width:38px;height:38px;padding:0;flex:none;
+  display:grid;place-items:center;
+  background:transparent;color:var(--fg);
+  border:1px solid var(--line-hi);cursor:pointer;
+  transition:border-color .3s var(--e-out), color .3s var(--e-out), background-color .3s var(--e-out);
+}
+.gal-btn:hover{border-color:var(--amber);color:var(--amber-hi);background:rgba(224,168,60,.08)}
+.gal-btn svg{width:14px;height:14px;display:block;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:square}
+
+.gal-track{
+  display:flex;gap:14px;
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scrollbar-width:none;-ms-overflow-style:none;
+  cursor:grab;
+}
+/* No scroll-snap and no scroll-behavior: the track drifts continuously, and
+   a mandatory snap would fight every frame of it. Position is owned by the
+   script, which writes scrollLeft directly. */
+.gal-track::-webkit-scrollbar{display:none}
+.gal-track.dragging{cursor:grabbing}
+.gal-track.dragging,.gal-track.dragging *{
+  -webkit-user-select:none;user-select:none;
+}
+.gal-track.dragging img{-webkit-user-drag:none}
+.gal-track:focus-visible{outline:2px solid var(--amber-hi);outline-offset:4px}
+.gal-track .fig{flex:0 0 auto}
+/* Each plate keeps its own proportions: the track fixes the height and the
+   width falls out of the photograph, so landscape and portrait sit side by
+   side on one baseline instead of being cropped into a shared box. */
+.gal-track .fig .frame{height:clamp(240px,42vh,430px);width:auto;display:block}
+.gal-track .fig img{height:100%;width:auto;max-width:none;object-fit:cover}
+/* The caption must not widen the slide -- width:0 keeps it out of the
+   max-content calculation, min-width:100% then matches the frame. */
+.gal-track .fig figcaption{width:0;min-width:100%}
+@media (max-width:640px){
+  .gal-track .fig .frame{height:clamp(180px,44vw,260px)}
+}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;gap:clamp(24px,4vw,44px);grid-template-columns:1fr}
+@media (min-width:820px){ .contact-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1fr)} }
+
+.steps{list-style:none;margin:0 0 24px;padding:0;counter-reset:s}
+.steps li{
+  position:relative;padding:11px 0 11px 34px;border-top:1px solid var(--line);
+  color:var(--fg-2);font-size:.95rem;text-wrap:pretty;
+}
+.steps li::before{
+  counter-increment:s;content:counter(s,decimal-leading-zero);
+  position:absolute;left:0;top:12px;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:10px;color:var(--amber);letter-spacing:.1em;
+}
+.steps li b{color:var(--fg);font-variation-settings:"wght" 620}
+
+.dl{margin:0;border-top:1px solid var(--line)}
+.dl .r{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dl dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3);flex:none}
+.dl dd{margin:0;font-family:var(--mono);font-size:.85rem;color:var(--fg);text-align:right;word-break:break-word}
+.dl dd a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(224,168,60,.4)}
+.dl dd a:hover{color:var(--amber-hi);border-bottom-color:var(--amber-hi)}
+
+form{display:grid;gap:12px}
+.f-row{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:520px){ .f-row.two{grid-template-columns:1fr 1fr} }
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2);
+}
+.field label .opt{color:var(--fg-3)}
+.field input,.field select,.field textarea{
+  font-family:var(--mono);font-size:14px;color:var(--fg);
+  background:var(--bg-1);border:1px solid var(--line-hi);border-radius:0;
+  padding:11px 12px;width:100%;
+  transition:border-color .25s var(--e-out), background-color .25s var(--e-out);
+}
+.field textarea{resize:vertical;min-height:104px;line-height:1.55}
+.field input::placeholder,.field textarea::placeholder{color:#9C9280;opacity:1}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--amber);background:var(--bg-2);outline-offset:2px}
+.field select{
+  appearance:none;-webkit-appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--amber) 50%),linear-gradient(135deg,var(--amber) 50%,transparent 50%);
+  background-position:calc(100% - 17px) calc(50% + 1px), calc(100% - 12px) calc(50% + 1px);
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:34px;
+}
+.field select option{background:var(--bg-1);color:var(--fg)}
+.f-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:4px}
+.f-note{
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);
+  flex:1 1 200px;line-height:1.6;
+}
+#form-status{
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--amber);line-height:1.6;min-height:1.2em;
+}
+
+/* ---------- footer ---------- */
+footer{
+  padding:18px var(--pad);border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg-3);
+}
+footer a{color:var(--fg-2);text-decoration:none}
+footer a:hover{color:var(--amber)}
+
+/* ---------- back to top ---------- */
+.totop{
+  position:fixed;z-index:var(--z-bar);
+  right:clamp(12px,2.6vw,28px);bottom:clamp(12px,2.6vw,28px);
+  width:44px;height:44px;padding:0;
+  display:grid;place-items:center;
+  font-family:var(--mono);
+  color:var(--amber);background:rgba(20,18,16,.84);
+  border:1px solid var(--line-hi);cursor:pointer;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .3s var(--e-out), transform .3s var(--e-out), visibility .3s var(--e-out),
+             border-color .3s var(--e-out), background-color .3s var(--e-out), color .3s var(--e-out);
+}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{border-color:var(--amber);background:rgba(224,168,60,.14);color:var(--amber-hi)}
+.totop svg{width:16px;height:16px;display:block;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square}
+@media (max-width:520px){ .totop{width:40px;height:40px} }
+
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  .acc .ul path{stroke-dashoffset:0}
+  .bud.armed .brow .fill{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <span class="corner tl" aria-hidden="true"><span class="reg"></span></span>
+  <span class="corner tr" aria-hidden="true"><span class="reg"></span></span>
+  <span class="corner bl" aria-hidden="true"><span class="reg"></span></span>
+  <span class="corner br" aria-hidden="true"><span class="reg"></span></span>
+  <div class="rail l" aria-hidden="true"><span>Sheet 01 · Trim 1240 · WLMAC FTC</span></div>
+  <div class="rail r" aria-hidden="true"><span>Reg · Amber-01 · Gain 1</span></div>
+
+  <header class="topbar" id="topbar">
+    <div class="brand">
+      <img src="images/logo.svg" alt="WLMAC Robotics" width="308" height="54">
+      <span class="tag">FTC · North York · 2026/27</span>
+    </div>
+    <a class="top-cta" href="#contact"><span class="dot" aria-hidden="true"></span>Partner spots open</a>
+  </header>
+
+  <!-- ============ 01 · HERO ============ -->
+  <section id="hero" aria-labelledby="h1">
+    <div class="field-wrap" id="field-wrap" aria-hidden="true"><pre id="field"></pre></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 01</span><span class="rule" aria-hidden="true"></span><span class="opt">Build grid 104&times;60</span><span class="rule" aria-hidden="true"></span><span>Season 2026/27</span><span class="reg" aria-hidden="true"></span></p>
+
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dash" aria-hidden="true"></span>Student-built <span class="sep">·</span> Est. 2024</p>
+
+      <h1 id="h1">
+        <span class="ln">Two teams.</span>
+        <span class="ln muted">One school.</span>
+        <span class="ln">Built from <em class="acc">scratch<svg class="ul" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 8.4 C 28 3.6, 55 10.2, 82 6.1 S 138 2.4, 166 7.3 C 180 9.4, 190 6.2, 197 4.6"/></svg></em>.</span>
+      </h1>
+
+      <p class="hero-deck">Students design, machine, code and drive both robots. Two seasons in and growing. <b>No corporate logo has ever been on these machines</b> - the founding-partner spots are still open.</p>
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="#tiers">Back the season</a>
+        <a class="btn btn-ghost" href="#budget">See the $10k</a>
+      </div>
+    </div>
+
+    <div class="telemetry" aria-label="Program readout">
+      <div><div class="v num">02</div><div class="k">FTC teams</div></div>
+      <div><div class="v num">200+</div><div class="k">Students reached</div></div>
+      <div><div class="v num">06+</div><div class="k">Competitions</div></div>
+      <div><div class="v num">$10,000</div><div class="k">Season budget</div></div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · THE TWO TEAMS ============ -->
+  <section id="teams" aria-labelledby="h-teams">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 02</span><span class="rule" aria-hidden="true"></span><span class="opt">Team registry · 27964 / 32514</span><span class="rule" aria-hidden="true"></span><span>Teams 02</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-teams">One shop. Two teams.</h2>
+    <p class="lede">The same build space, the same standards, twice the students who get to make something and take it to a field. <strong>CyberLyons</strong> set the bar in 2024. <strong>MechLyons</strong> proved it scales in 2025.</p>
+
+    <div class="plates">
+      <article class="plate-card">
+        <div class="ink blue">
+          <p class="ally"><span>Blue alliance</span><span>Est. 2024</span></p>
+          <span class="team-no">27964</span>
+          <div class="team-name">CyberLyons</div>
+        </div>
+        <p class="plate-body">The founding team. They set the standard the whole program runs on: build it yourself, test it until it breaks, show up ready.</p>
+        <p class="plate-meta"><span>Status <b>Active</b></span><span>Seasons <b>03</b></span></p>
+      </article>
+
+      <article class="plate-card">
+        <div class="ink red">
+          <p class="ally"><span>Red alliance</span><span>Est. 2025</span></p>
+          <span class="team-no">32514</span>
+          <div class="team-name">MechLyons</div>
+        </div>
+        <p class="plate-body">Proof the program is growing. Same shop, same standards, double the students who get to build and compete.</p>
+        <p class="plate-meta"><span>Status <b>Active</b></span><span>Seasons <b>02</b></span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 03 · STATS ============ -->
+  <section id="stats" aria-labelledby="h-stats">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 03</span><span class="rule" aria-hidden="true"></span><span class="opt">Program telemetry</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-stats">The program, in figures.</h2>
+
+    <div class="ledger">
+      <div class="row">
+        <span class="ix num">01</span>
+        <span class="lbl">Competitive FTC teams at one school<small>Both fielded, both funded by partners</small></span>
+        <span class="meter" aria-hidden="true">##<i>::::::::::::::::::</i></span>
+        <span class="val num">2</span>
+      </div>
+      <div class="row">
+        <span class="ix num">02</span>
+        <span class="lbl">Students reached through outreach<small>Workshops, demos, open houses</small></span>
+        <span class="meter" aria-hidden="true">####################</span>
+        <span class="val num">200+</span>
+      </div>
+      <div class="row">
+        <span class="ix num">03</span>
+        <span class="lbl">Partner schools across North York<small>Elementary and middle school programs</small></span>
+        <span class="meter" aria-hidden="true">###<i>:::::::::::::::::</i></span>
+        <span class="val num">3</span>
+      </div>
+      <div class="row">
+        <span class="ix num">04</span>
+        <span class="lbl">Competitions in the second season<small>Qualifiers, scrimmages, showcases</small></span>
+        <span class="meter" aria-hidden="true">######<i>::::::::::::::</i></span>
+        <span class="val num">6+</span>
+      </div>
+      <div class="row">
+        <span class="ix num">05</span>
+        <span class="lbl">Season budget, fully itemized<small>Ten line items, published below</small></span>
+        <span class="meter" aria-hidden="true">####################</span>
+        <span class="val num">$10k</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 · WHAT SPONSORS GET ============ -->
+  <section id="value" aria-labelledby="h-value">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 04</span><span class="rule" aria-hidden="true"></span><span class="opt">Placement channels</span><span class="rule" aria-hidden="true"></span><span>CH 01-03</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-value">What a partner actually gets.</h2>
+    <p class="lede">Not a thank-you note. Placement on a machine that gets photographed all season, on the people driving it, and in front of a school of 1,400.</p>
+
+    <div class="gets">
+      <div class="get">
+        <figure class="fig">
+          <div class="frame" style="aspect-ratio:4/3">
+            <img src="images/hero-bg.jpg" alt="Both WLMAC robots staged on a competition field before a match" width="1920" height="1446" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Both robots, field staging</span><span class="n">Fig 01</span></figcaption>
+        </figure>
+        <div>
+          <h3><span class="ix">Robot · every match</span>Logo on a competing robot</h3>
+          <p>Premium placement on a machine photographed and filmed all season, on the field and in the pits. Every match, every match video, every recap post.</p>
+        </div>
+      </div>
+
+      <div class="get flip">
+        <div>
+          <h3><span class="ix">Apparel · every event</span>Worn by the team</h3>
+          <p>Your logo on team apparel at every qualifier, demo and workshop. Students wear it in the pits, on the drive team and in front of the schools we visit.</p>
+        </div>
+        <figure class="fig">
+          <div class="frame" style="aspect-ratio:4/3">
+            <img src="images/about-photo.jpg" alt="The full WLMAC Robotics roster in blue team shirts with both robots in the school gym" width="1400" height="781" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Full roster, both robots</span><span class="n">Fig 02</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="get">
+        <figure class="fig">
+          <div class="frame" style="aspect-ratio:4/3">
+            <img src="images/portfolio/gallery/robot-bench.jpg" alt="Course fair display on campus with a robot on the bench and students gathered around" width="1000" height="1333" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Course fair, campus</span><span class="n">Fig 03</span></figcaption>
+        </figure>
+        <div>
+          <h3><span class="ix">Campus · 1,400 students</span>Campus and social reach</h3>
+          <p>A 1,400-student school, three partner schools across North York, and an Instagram that grows with every build post of the season.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · TIERS ============ -->
+  <section id="tiers" aria-labelledby="h-tiers">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 05</span><span class="rule" aria-hidden="true"></span><span class="opt">Partner tiers · CAD</span><span class="rule" aria-hidden="true"></span><span>Range 200-1500+</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-tiers">Three ways in.</h2>
+    <p class="lede">Every tier includes everything below it. Pick the one that fits the budget you already have.</p>
+
+    <div class="tiers">
+      <article class="tier">
+        <p class="t-id"><span>Tier I</span><span class="num">200 - 499</span></p>
+        <h3>Cub</h3>
+        <p class="price num">$200 - $499</p>
+        <ul class="bene">
+          <li>Name on team website and sponsor wall</li>
+          <li>Recognition in the season recap post</li>
+          <li>Logo on team apparel and jerseys</li>
+          <li>Name in season videos and social posts</li>
+        </ul>
+      </article>
+
+      <article class="tier">
+        <p class="t-id"><span>Tier II</span><span class="num">500 - 1,499</span></p>
+        <h3>Challenger</h3>
+        <p class="price num">$500 - $1,499</p>
+        <ul class="bene">
+          <li class="carry">Everything in Cub</li>
+          <li>Logo on pit display and printed materials</li>
+          <li>A dedicated social post</li>
+          <li>End-of-season impact report</li>
+        </ul>
+      </article>
+
+      <article class="tier tier-flag">
+        <div>
+          <p class="t-id"><span>Tier III · Flagship</span><span class="num">1,500+</span></p>
+          <h3>Lyon Champion</h3>
+          <p class="price num">$1,500+</p>
+          <ul class="bene">
+            <li class="carry">Everything in Challenger</li>
+            <li class="hero-benefit">Prominent logo on a competing robot</li>
+            <li>Sponsor showcase invite</li>
+            <li>Live robot demo at your site</li>
+          </ul>
+          <p class="flag-note">No corporate logo has ever been on these robots. First flagship partner takes that spot.</p>
+        </div>
+        <figure class="fig">
+          <div class="frame" style="aspect-ratio:5/4">
+            <img src="images/portfolio/gallery/robot-decode.jpg" alt="MechLyons robot lined up at the goal during a DECODE season match" width="1000" height="1333" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Flagship placement zone</span><span class="n">Fig 04</span></figcaption>
+        </figure>
+      </article>
+    </div>
+
+    <p class="inkind"><b>In-kind counts.</b> Donated parts, tools, machine time or services offset cash at equal value and land you in the same tier.</p>
+  </section>
+
+  <!-- ============ 06 · BUDGET (taste v2 allocation map) ============ -->
+  <section id="budget" aria-labelledby="h-budget">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 06</span><span class="rule" aria-hidden="true"></span><span class="opt">Allocation map · 10 lines</span><span class="rule" aria-hidden="true"></span><span>CAD</span><span class="reg" aria-hidden="true"></span></p>
+
+    <div class="bud-head">
+      <div>
+        <h2 id="h-budget">The whole $10,000, line by line.</h2>
+        <p class="lede">This is the real season plan. Sponsorship goes against these lines and nothing else.</p>
+      </div>
+      <div class="bud-total">
+        <p class="t num">$10,000</p>
+        <p class="c">Total CAD · 2026/27</p>
+      </div>
+    </div>
+
+    <div class="strip" role="img" aria-label="Stacked allocation strip showing the ten budget lines in proportion">
+      <i style="flex:600;background:hsl(38 70% 62%)"></i>
+      <i style="flex:1000;background:hsl(38 68% 56%)"></i>
+      <i style="flex:3200;background:hsl(38 72% 50%)"></i>
+      <i style="flex:1400;background:hsl(38 62% 44%)"></i>
+      <i style="flex:1200;background:hsl(38 56% 39%)"></i>
+      <i style="flex:600;background:hsl(38 50% 34%)"></i>
+      <i style="flex:800;background:hsl(38 44% 30%)"></i>
+      <i style="flex:400;background:hsl(38 38% 26%)"></i>
+      <i style="flex:400;background:hsl(38 32% 23%)"></i>
+      <i style="flex:400;background:hsl(38 26% 20%)"></i>
+    </div>
+    <p class="striplabels"><span>0</span><span>5,000</span><span>10,000</span></p>
+
+    <div class="bud" id="budget-list">
+      <div class="brow" style="--p:6;--d:0"><div class="line"><span class="nmx">FTC team registration, 2 teams</span><span class="pct">6.0%</span><span class="amtx">$600</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:10;--d:1"><div class="line"><span class="nmx">Qualifier and event entry fees</span><span class="pct">10.0%</span><span class="amtx">$1,000</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:32;--d:2"><div class="line"><span class="nmx">Robot parts and hardware, 2 robots</span><span class="pct">32.0%</span><span class="amtx">$3,200</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:14;--d:3"><div class="line"><span class="nmx">Control system and electronics</span><span class="pct">14.0%</span><span class="amtx">$1,400</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:12;--d:4"><div class="line"><span class="nmx">Fabrication and prototyping materials</span><span class="pct">12.0%</span><span class="amtx">$1,200</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:6;--d:5"><div class="line"><span class="nmx">Tools and build-space supplies</span><span class="pct">6.0%</span><span class="amtx">$600</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:8;--d:6"><div class="line"><span class="nmx">Team apparel and sponsor branding</span><span class="pct">8.0%</span><span class="amtx">$800</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:4;--d:7"><div class="line"><span class="nmx">Pit display and presentation</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:4;--d:8"><div class="line"><span class="nmx">Outreach and demo supplies</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
+      <div class="brow" style="--p:4;--d:9"><div class="line"><span class="nmx">Travel and competition days</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
+    </div>
+  </section>
+
+  <!-- ============ 07 · SEASON PHOTOS ============ -->
+  <section id="season" aria-labelledby="h-season">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 07</span><span class="rule" aria-hidden="true"></span><span class="opt">Field record · Fig. 05-10</span><span class="rule" aria-hidden="true"></span><span>Sheet 01</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-season">The season on the record.</h2>
+    <p class="lede">Competitions, classrooms and the nights in between. All of it run by students.</p>
+
+    <div class="gallery">
+      <div class="gal-ctl">
+        <p class="gal-count"><b id="gal-ix">01</b> / <span id="gal-n">06</span> · Field plates</p>
+        <button class="gal-btn" type="button" id="gal-prev" aria-label="Previous plate" aria-controls="gal-track">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 2.6 4.4 8l5.6 5.4"/></svg>
+        </button>
+        <button class="gal-btn" type="button" id="gal-next" aria-label="Next plate" aria-controls="gal-track">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 2.6 11.6 8 6 13.4"/></svg>
+        </button>
+      </div>
+
+      <div class="gal-track" id="gal-track" tabindex="0" role="group" aria-label="Season plates, scroll or use the arrow keys">
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/qualifier.jpg" alt="Both WLMAC teams at the February 2026 Toronto qualifier with their robots at the field" width="1000" height="562" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">February 2026 Qualifier, Toronto · both teams brought robots to the field</span><span class="n">Fig 05</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/club-crawl.jpg" alt="Grade 9 Night, robotics introduced to incoming students and families" width="1000" height="1333" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Grade 9 Night · 100+ incoming students</span><span class="n">Fig 06</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/outreach-event1.jpg" alt="Library Open House with students building, driving and programming projects" width="1000" height="1328" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Library Open House · 50+ builders</span><span class="n">Fig 07</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/mseo-classroom.jpg" alt="Science and Engineering Olympics 2026 classroom session with middle school students" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">MSEO 2026 · 30+ middle schools</span><span class="n">Fig 08</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/nych-yorkdale.jpg" alt="NYCH Yorkdale workshop with students building Arduino projects" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">NYCH Yorkdale · 60+ Arduino builds</span><span class="n">Fig 09</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/dublinevent.jpg" alt="Dublin Heights elementary students at their first hands-on engineering session" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Dublin Heights · first hands-on build</span><span class="n">Fig 10</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 · CONTACT ============ -->
+  <section id="contact" aria-labelledby="h-contact">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 08</span><span class="rule" aria-hidden="true"></span><span class="opt">Station WLMAC-001</span><span class="rule" aria-hidden="true"></span><span>Open channel</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-contact">Start the conversation.</h2>
+    <p class="lede">Cheque or e-transfer, and everything in writing first. No pressure, no boilerplate deck.</p>
+
+    <div class="contact-grid">
+      <div>
+        <ol class="steps">
+          <li>We reply within a few days with a <b>season overview</b> and what your contribution covers.</li>
+          <li>You pick a <b>tier or an in-kind contribution</b>, and we put it in writing.</li>
+          <li>Your logo is on the robot, the jerseys and the wall <b>before the first qualifier</b>.</li>
+        </ol>
+
+        <dl class="dl">
+          <div class="r"><dt>Email</dt><dd><a href="mailto:hello@wlmacrobotics.ca">hello@wlmacrobotics.ca</a></dd></div>
+          <div class="r"><dt>Web</dt><dd><a href="https://wlmacrobotics.ca">wlmacrobotics.ca</a></dd></div>
+          <div class="r"><dt>Instagram</dt><dd><a href="https://instagram.com/wlmac.cyberlyons">@wlmac.cyberlyons</a></dd></div>
+          <div class="r"><dt>Payment</dt><dd>Cheque / e-transfer</dd></div>
+          <div class="r"><dt>School</dt><dd>William Lyon Mackenzie CI</dd></div>
+        </dl>
+      </div>
+
+      <form id="sponsor-form" novalidate>
+        <div class="f-row two">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@company.ca">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-org">Organization <span class="opt">(optional)</span></label>
+          <input id="f-org" name="org" type="text" autocomplete="organization" placeholder="Company or shop name">
+        </div>
+
+        <div class="field">
+          <label for="f-interest">Interest</label>
+          <select id="f-interest" name="interest">
+            <option value="Tier III - Lyon Champion ($1,500+)">Tier III · Lyon Champion ($1,500+)</option>
+            <option value="Tier II - Challenger ($500-$1,499)">Tier II · Challenger ($500 - $1,499)</option>
+            <option value="Tier I - Cub ($200-$499)">Tier I · Cub ($200 - $499)</option>
+            <option value="In-kind - parts, tools, machine time">In-kind · parts, tools, machine time</option>
+            <option value="Not sure yet - send the overview">Not sure yet · send the overview</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" name="message" required placeholder="What you are thinking of supporting, and anything you want to know first."></textarea>
+        </div>
+
+        <div class="f-foot">
+          <button class="btn btn-primary" type="submit">Send enquiry</button>
+          <p class="f-note">Opens your mail client, addressed to hello@wlmacrobotics.ca</p>
+        </div>
+        <p id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span>WLMAC Robotics · CyberLyons 27964 · MechLyons 32514</span>
+    <span><a href="mailto:hello@wlmacrobotics.ca">hello@wlmacrobotics.ca</a> · North York, Toronto</span>
+  </footer>
+</div>
+
+<button class="totop" id="to-top" type="button" aria-label="Back to top">
+  <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 13.2V3.4M8 3.4 3.6 7.8M8 3.4l4.4 4.4"/></svg>
+</button>
+
+<script>
+(function(){
+  'use strict';
+
+  var reduceMotion = false;
+  try {
+    reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  } catch (e) { reduceMotion = false; }
+
+  /* Every frame callback on this page goes through raf(). If a renderer
+     has no requestAnimationFrame, a bare call would throw a ReferenceError
+     and take the rest of boot() down with it, form included. */
+  var raf = (typeof window.requestAnimationFrame === 'function')
+    ? function(fn){ return window.requestAnimationFrame(fn); }
+    : function(fn){ return setTimeout(function(){ fn(Date.now()); }, 16); };
+
+  /* ============================================================
+     CHARACTER FIELD · 104 x 60
+     Density maps to brightness. Signed-distance shapes describe a
+     drivetrain, wheels, mast, arm and the scoring structure on the
+     field. No randomness that is not seeded, so the settle animation
+     converges to exactly the same plate every time.
+  ============================================================ */
+  var COLS = 104, ROWS = 60, CELLW = 0.6;
+  var RAMP = [' ', '.', ':', '-', '+', '*', '#', '0', '@'];
+
+  function hash(x, y){
+    var s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+    return s - Math.floor(s);
+  }
+  function sdBox(px, py, cx, cy, hw, hh){
+    var dx = Math.abs(px - cx) - hw, dy = Math.abs(py - cy) - hh;
+    var ax = dx > 0 ? dx : 0, ay = dy > 0 ? dy : 0;
+    return Math.sqrt(ax * ax + ay * ay) + Math.min(Math.max(dx, dy), 0);
+  }
+  function sdCirc(px, py, cx, cy, r){
+    var dx = px - cx, dy = py - cy;
+    return Math.sqrt(dx * dx + dy * dy) - r;
+  }
+  function sdRing(px, py, cx, cy, r, t){
+    var dx = px - cx, dy = py - cy;
+    return Math.abs(Math.sqrt(dx * dx + dy * dy) - r) - t;
+  }
+  function sdSeg(px, py, ax, ay, bx, by, t){
+    var pax = px - ax, pay = py - ay, bax = bx - ax, bay = by - ay;
+    var h = (pax * bax + pay * bay) / (bax * bax + bay * bay);
+    h = h < 0 ? 0 : (h > 1 ? 1 : h);
+    var dx = pax - bax * h, dy = pay - bay * h;
+    return Math.sqrt(dx * dx + dy * dy) - t;
+  }
+
+  function level(c, r){
+    var px = c * CELLW, py = r;
+
+    /* robot */
+    var d = sdBox(px, py, 36, 41, 13, 4.6);              /* chassis */
+    d = Math.min(d, sdBox(px, py, 36, 46.6, 15, 1.0));   /* bumper */
+    d = Math.min(d, sdRing(px, py, 25, 45.6, 4.3, 1.25));/* wheel L */
+    d = Math.min(d, sdCirc(px, py, 25, 45.6, 1.4));
+    d = Math.min(d, sdRing(px, py, 47, 45.6, 4.3, 1.25));/* wheel R */
+    d = Math.min(d, sdCirc(px, py, 47, 45.6, 1.4));
+    d = Math.min(d, sdBox(px, py, 33, 27, 3.1, 10));     /* mast */
+    d = Math.min(d, sdBox(px, py, 33, 18.4, 7.4, 1.0));  /* top brace */
+    d = Math.min(d, sdSeg(px, py, 35, 22, 52.5, 12.5, 1.25)); /* arm */
+    d = Math.min(d, sdBox(px, py, 54.5, 11, 3.1, 2.3));  /* intake head */
+    d = Math.min(d, sdCirc(px, py, 33, 15.4, 1.9));      /* sensor */
+
+    /* field structure, one density step back */
+    var g = sdBox(px, py, 11, 33, 0.85, 15);
+    g = Math.min(g, sdRing(px, py, 11, 19, 4.5, 0.85));
+    g = Math.min(g, sdBox(px, py, 11, 48.4, 4.4, 0.85));
+
+    var b;
+    if (d < 0){
+      if (d > -1.35) { b = 0.97; }
+      else {
+        var tex = Math.sin(px * 0.85) * Math.sin(py * 0.75);
+        b = 0.44 + 0.20 * tex;
+      }
+    } else if (g < 0){
+      b = g > -0.95 ? 0.62 : 0.30;
+    } else {
+      var dd = d < g ? d : g;
+      b = 0.13 * Math.exp(-dd * 0.30);
+      if (py > 47.5){
+        var pr = (py - 47.5) / 12.5; if (pr > 1) pr = 1;
+        if (((c + (r % 2) * 4) % 9) < 1) b = Math.max(b, 0.13 + 0.24 * pr);
+        if (r % 3 === 0) b = Math.max(b, 0.05 + 0.15 * pr);
+      }
+      if (py < 15 && ((c * 7 + r * 13) % 41) < 1) b = Math.max(b, 0.22);
+    }
+
+    b += (hash(c, r) - 0.5) * 0.10;
+
+    /* keep the left third quiet: the headline lives there */
+    var u = c / COLS;
+    b *= u < 0.30 ? (0.30 + 0.70 * (u / 0.30)) : 1;
+    var v = r / ROWS;
+    if (v > 0.88) b *= 1 - (v - 0.88) / 0.14;
+
+    var i = Math.round(b * 8);
+    return i < 0 ? 0 : (i > 8 ? 8 : i);
+  }
+
+  var FINAL = null;
+  function computeFinal(){
+    FINAL = new Uint8Array(COLS * ROWS);
+    for (var r = 0; r < ROWS; r++){
+      for (var c = 0; c < COLS; c++){ FINAL[r * COLS + c] = level(c, r); }
+    }
+  }
+
+  function bucket(i){ return i <= 2 ? 'd0' : (i <= 5 ? 'd1' : 'd2'); }
+
+  function paint(pre, p){
+    var out = '', run = '', cls = '', i, k, idx, ch;
+    for (var r = 0; r < ROWS; r++){
+      for (var c = 0; c < COLS; c++){
+        i = r * COLS + c;
+        if (p >= 1){
+          idx = FINAL[i];
+        } else {
+          var th = 0.12 + 0.88 * hash(c * 1.7 + 5, r * 0.9 + 11);
+          var wave = (r / ROWS) * 0.3;
+          if (p * 1.45 - wave > th){
+            idx = FINAL[i];
+          } else {
+            var n = hash(c + p * 97, r - p * 53);
+            idx = n < 0.62 ? 0 : (n < 0.84 ? 1 : (n < 0.95 ? 2 : 4));
+          }
+        }
+        k = bucket(idx);
+        ch = RAMP[idx];
+        if (k !== cls){
+          if (run) out += '<span class="' + cls + '">' + run + '</span>';
+          run = ''; cls = k;
+        }
+        run += ch;
+      }
+      if (r < ROWS - 1) run += '\n';
+    }
+    if (run) out += '<span class="' + cls + '">' + run + '</span>';
+    pre.innerHTML = out;
+  }
+
+  var advance = 0.6;
+  function measureAdvance(){
+    var m = document.createElement('span');
+    m.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;white-space:pre;' +
+      'font:400 100px "Azeret Mono", ui-monospace, monospace;letter-spacing:0;';
+    var s = ''; for (var i = 0; i < 50; i++){ s += '0'; }
+    m.textContent = s;
+    document.body.appendChild(m);
+    var w = m.getBoundingClientRect().width;
+    if (m.parentNode) m.parentNode.removeChild(m);
+    if (w > 0) advance = w / 50 / 100;
+  }
+
+  function fit(){
+    var pre = document.getElementById('field');
+    var wrap = document.getElementById('field-wrap');
+    if (!pre || !wrap) return;
+    var w = wrap.clientWidth, h = wrap.clientHeight;
+    if (!w || !h) return;
+    var byW = w / (COLS * advance);
+    var byH = h / ROWS;
+    /* Fit the width, but allow a small overscale so the grid reaches the
+       top and bottom of the hero instead of floating as a stamp. The
+       wrapper clips, and the outermost columns are empty field anyway. */
+    var fs = Math.min(byH, byW * 1.18);
+    if (!isFinite(fs) || fs < 3) fs = 3;
+    pre.style.fontSize = fs.toFixed(3) + 'px';
+  }
+
+  function initField(){
+    var pre = document.getElementById('field');
+    var wrap = document.getElementById('field-wrap');
+    if (!pre || !wrap) return;
+
+    computeFinal();
+    measureAdvance();
+    fit();
+    wrap.classList.add('on');
+
+    if (reduceMotion){
+      paint(pre, 1);
+    } else {
+      /* The settle is an enhancement, never a gate. A timer, not a frame
+         callback, owns the finished plate: rAF does not fire in hidden
+         tabs or non-compositing renderers, and the plate must still land. */
+      var DUR = 1150, settled = false, start = 0, last = -1;
+      var finalize = function(){
+        if (settled) return;
+        settled = true;
+        paint(pre, 1);
+      };
+      var guard = setTimeout(finalize, DUR + 420);
+      var step = function(ts){
+        if (settled) return;
+        if (!start) start = ts;
+        var p = (ts - start) / DUR;
+        if (p >= 1){ clearTimeout(guard); finalize(); return; }
+        /* cap repaints: the grid is 6,240 cells */
+        var frame = Math.floor(p * 26);
+        if (frame !== last){ last = frame; paint(pre, p); }
+        raf(step);
+      };
+      paint(pre, 0);
+      raf(step);
+    }
+
+    /* ResizeObserver, not the window resize event: this page is judged
+       inside an iframe, and the frame can change size without the window
+       ever firing resize. */
+    var t = null;
+    var refit = function(){
+      if (t) clearTimeout(t);
+      t = setTimeout(fit, 100);
+    };
+    if (typeof ResizeObserver === 'function'){
+      try { new ResizeObserver(refit).observe(wrap); } catch (e) {}
+    }
+    window.addEventListener('resize', refit);
+
+    /* The advance width is measured from the loaded webfont; if it lands
+       after first paint the grid must be re-fitted. Timers are the one
+       callback channel that survives every renderer. */
+    var remeasure = function(){ measureAdvance(); fit(); };
+    if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function'){
+      document.fonts.ready.then(remeasure)['catch'](function(){});
+    }
+    setTimeout(remeasure, 400);
+    setTimeout(remeasure, 1400);
+  }
+
+  /* ============================================================
+     BUDGET BARS · wipe in on first view.
+     The markup ships every fill at its true width, so the figures are
+     correct with JS off or if this observer never fires. `armed` is the
+     only thing that collapses them, and it is set only once we know an
+     observer exists to bring them back.
+  ============================================================ */
+  function initBudget(){
+    var list = document.getElementById('budget-list');
+    if (!list || reduceMotion || !('IntersectionObserver' in window)) return;
+    var rows = list.querySelectorAll('.brow');
+    if (!rows.length) return;
+
+    list.classList.add('armed');
+
+    var revealed = false;
+    var reveal = function(){
+      if (revealed) return;
+      revealed = true;
+      for (var i = 0; i < rows.length; i++){ rows[i].classList.add('in'); }
+    };
+    /* Same contract as the hero plate: a timer owns the end state, so a
+       renderer that never issues an intersection still shows the bars. */
+    var guard = setTimeout(reveal, 4000);
+
+    var io = new IntersectionObserver(function(entries, obs){
+      for (var e = 0; e < entries.length; e++){
+        if (!entries[e].isIntersecting) continue;
+        obs.disconnect();
+        clearTimeout(guard);
+        reveal();
+        return;
+      }
+    }, { threshold: 0.12 });
+    io.observe(list);
+  }
+
+  /* ============================================================
+     PAGE CHROME · the bar solidifies once the sheet moves under it,
+     and the return-to-top control appears past the first screen.
+  ============================================================ */
+  function initChrome(){
+    var bar = document.getElementById('topbar');
+    var top = document.getElementById('to-top');
+    if (!bar && !top) return;
+
+    var pending = false;
+    var apply = function(){
+      pending = false;
+      var y = window.pageYOffset ||
+              (document.documentElement && document.documentElement.scrollTop) ||
+              document.body.scrollTop || 0;
+      if (bar){
+        if (y > 6) bar.classList.add('stuck'); else bar.classList.remove('stuck');
+      }
+      if (top){
+        if (y > 520) top.classList.add('show'); else top.classList.remove('show');
+      }
+    };
+    var onScroll = function(){
+      if (pending) return;
+      pending = true;
+      raf(apply);
+    };
+
+    apply();
+    try {
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+    } catch (e) {
+      window.addEventListener('scroll', onScroll);
+      window.addEventListener('resize', onScroll);
+    }
+
+    if (top){
+      top.addEventListener('click', function(){
+        try {
+          window.scrollTo({ top: 0, left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        } catch (e) {
+          window.scrollTo(0, 0);
+        }
+        /* the control is about to disappear, so hand focus back to the bar */
+        if (bar && typeof bar.focus === 'function'){
+          bar.setAttribute('tabindex', '-1');
+          try { bar.focus({ preventScroll: true }); } catch (e2) { bar.focus(); }
+        }
+      });
+    }
+  }
+
+  /* ============================================================
+     SEASON CAROUSEL · plate 07.
+     A continuous drift, not a slideshow. The plate set is cloned until it
+     is long enough to cover the viewport twice, so the position can wrap
+     by exactly one set length and the seam is never visible.
+
+     One velocity drives everything. It eases back toward the base drift
+     from wherever it is, so a drag, a fling or a button press are all just
+     a velocity that decays home -- there is no state to leave the track
+     stuck in. With this script absent the track is still a plain overflow
+     scroller that can be swiped and tabbed through.
+  ============================================================ */
+  function initGallery(){
+    var track = document.getElementById('gal-track');
+    if (!track) return;
+    var plates = track.querySelectorAll('.fig');
+    var count = plates.length;
+    if (!count) return;
+
+    var prev = document.getElementById('gal-prev');
+    var next = document.getElementById('gal-next');
+    var ixEl = document.getElementById('gal-ix');
+    var nEl  = document.getElementById('gal-n');
+
+    function pad(n){ return (n < 10 ? '0' : '') + n; }
+    if (nEl) nEl.textContent = pad(count);
+
+    /* Clone whole sets until the strip is at least twice the visible width.
+       Clones are decorative repeats of content already in the accessibility
+       tree, so they are hidden from it and taken out of the tab order. */
+    function addSet(){
+      for (var i = 0; i < count; i++){
+        var c = plates[i].cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        var f = c.querySelectorAll('a,button,[tabindex]');
+        for (var j = 0; j < f.length; j++){ f[j].setAttribute('tabindex', '-1'); }
+        track.appendChild(c);
+      }
+    }
+    addSet();
+
+    var span = 0;   /* advance of exactly one set, gap included */
+    var offs = [];  /* each plate's offset within one set */
+    function measure(){
+      var first = track.querySelector('.fig');
+      var mark = track.children[count];
+      span = (first && mark) ? (mark.offsetLeft - first.offsetLeft) : 0;
+      /* A short strip cannot wrap without showing its end. */
+      var guard = 0;
+      while (span > 0 && track.scrollWidth < track.clientWidth + span && guard++ < 6){
+        addSet();
+      }
+      /* Cached because the counter reads them on every frame, and asking
+         the document for a layout value 60 times a second is how a drift
+         this cheap turns into jank. */
+      var origin = first ? first.offsetLeft : 0;
+      offs.length = 0;
+      for (var i = 0; i < count; i++){ offs.push(plates[i].offsetLeft - origin); }
+    }
+    measure();
+
+    var BASE = reduceMotion ? 0 : 18;   /* px per second - a slow read */
+    var pos = 0, vel = BASE;
+    var dragging = false, offscreen = false, touching = false;
+
+    function norm(p){
+      if (!(span > 0)) return 0;
+      p = p % span;
+      return p < 0 ? p + span : p;
+    }
+    /* The counter is recomputed every frame, so it must only touch the DOM
+       when the reading actually changes. */
+    var shownIx = -1;
+    function setIx(i){
+      if (i === shownIx) return;
+      shownIx = i;
+      if (ixEl) ixEl.textContent = pad(i + 1);
+    }
+
+    /* Nearest plate, measured the short way round so the count does not
+       flip at the seam. */
+    function syncIx(){
+      var best = 0, bestD = Infinity, d, i;
+      for (i = 0; i < offs.length; i++){
+        d = Math.abs(offs[i] - pos);
+        if (span > 0 && d > span / 2) d = span - d;
+        if (d < bestD){ bestD = d; best = i; }
+      }
+      setIx(best);
+    }
+
+    function step(dt){
+      /* Only the reader's own hand, or the strip being out of sight, stops
+         the drift. Pausing on hover would strand a fling: the velocity is
+         set the instant the button is released, and a pointer sitting over
+         the gallery would hold that velocity unspent until it left. */
+      if (dragging || touching || offscreen || document.hidden) return;
+      if (span <= 0) return;
+      /* Ease the velocity home. One expression covers coasting after a
+         fling, recovering from a backwards drag, and holding the drift. */
+      vel += (BASE - vel) * (1 - Math.pow(0.95, dt * 60));
+      if (Math.abs(vel - BASE) < 0.4) vel = BASE;
+      if (vel === 0) return;
+      pos = norm(pos + vel * dt);
+      track.scrollLeft = pos;
+      syncIx();
+    }
+
+    /* rAF where it runs, a timer where it does not. A renderer can expose
+       requestAnimationFrame and still never serve a frame, which would
+       leave the strip frozen, so the first frames are watched for. */
+    var lastTs = 0, frames = 0, intId = null;
+    function frame(ts){
+      if (intId) return;
+      if (typeof ts !== 'number') ts = +new Date();
+      if (!lastTs) lastTs = ts;
+      var dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+      if (dt > 0.1) dt = 0.1;    /* clamp after a tab switch */
+      if (dt > 0){ frames++; step(dt); }
+      raf(frame);
+    }
+    function useTimer(){
+      if (intId) return;
+      var t0 = +new Date();
+      intId = setInterval(function(){
+        var now = +new Date(), dt = (now - t0) / 1000;
+        t0 = now;
+        if (dt > 0.1) dt = 0.1;
+        step(dt);
+      }, 25);
+    }
+    raf(frame);
+    setTimeout(function(){ if (frames < 2) useTimer(); }, 320);
+
+    /* ---- flick: a velocity impulse, never a jump ---- */
+    function push(dir){
+      if (span <= 0) return;
+      if (reduceMotion){
+        pos = norm(pos + dir * (span / count));
+        track.scrollLeft = pos;
+        syncIx();
+        return;
+      }
+      /* Sized against the decay above so one press carries roughly one
+         plate before the drift takes back over. */
+      vel = dir * 1300;
+    }
+    if (prev) prev.addEventListener('click', function(){ push(-1); });
+    if (next) next.addEventListener('click', function(){ push(1); });
+
+    track.addEventListener('keydown', function(ev){
+      if (ev.key === 'ArrowRight'){ ev.preventDefault(); push(1); }
+      else if (ev.key === 'ArrowLeft'){ ev.preventDefault(); push(-1); }
+    });
+
+    /* ---- drag ----
+       Mouse only. Touch already has native momentum scrolling, and taking
+       that over would feel worse than what the platform gives for free. */
+    var startX = 0, startPos = 0, lastX = 0, lastMs = 0, moved = false;
+
+    function down(ev){
+      if (ev.pointerType && ev.pointerType !== 'mouse') return;
+      if (ev.button != null && ev.button !== 0) return;
+      if (span <= 0) return;
+      dragging = true; moved = false; vel = 0;
+      startX = lastX = ev.clientX;
+      startPos = pos;
+      lastMs = +new Date();
+      track.classList.add('dragging');
+      try { track.setPointerCapture(ev.pointerId); } catch (e) {}
+    }
+    function move(ev){
+      if (!dragging) return;
+      var dx = ev.clientX - startX;
+      if (Math.abs(dx) > 3) moved = true;
+      pos = norm(startPos - dx);
+      track.scrollLeft = pos;
+      syncIx();
+      var now = +new Date(), dtm = (now - lastMs) / 1000;
+      if (dtm > 0.008){
+        /* Dragging left moves the strip forward, hence the sign. */
+        vel = -(ev.clientX - lastX) / dtm;
+        if (vel > 3000) vel = 3000; else if (vel < -3000) vel = -3000;
+        lastX = ev.clientX; lastMs = now;
+      }
+      if (ev.cancelable) ev.preventDefault();
+    }
+    function up(ev){
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove('dragging');
+      try { track.releasePointerCapture(ev.pointerId); } catch (e) {}
+      /* A stationary release is a click, not a fling. And a release that
+         comes after a pause is deliberate placement -- carrying the
+         velocity from before the pause would throw the strip off. */
+      if (!moved || (+new Date() - lastMs) > 120) vel = BASE;
+      lastTs = 0;
+    }
+
+    if (window.PointerEvent){
+      track.addEventListener('pointerdown', down);
+      track.addEventListener('pointermove', move);
+      track.addEventListener('pointerup', up);
+      track.addEventListener('pointercancel', up);
+    } else {
+      track.addEventListener('mousedown', down);
+      document.addEventListener('mousemove', move);
+      document.addEventListener('mouseup', up);
+    }
+    /* A drag that ends up as a click must not open anything underneath. */
+    track.addEventListener('click', function(ev){
+      if (moved){ ev.preventDefault(); ev.stopPropagation(); moved = false; }
+    }, true);
+    /* Without this the browser starts its own image drag the moment the
+       pointer moves, and the strip is left stuck behind a drag ghost. */
+    track.addEventListener('dragstart', function(ev){ ev.preventDefault(); });
+
+    /* Native touch scrolling owns the position while a finger is down. */
+    var touchT = null;
+    function touchOn(){
+      touching = true; vel = BASE;
+      if (touchT){ clearInterval(touchT); touchT = null; }
+    }
+    function touchOff(){
+      /* The platform's momentum keeps gliding after the finger lifts.
+         Taking the strip back at touchend would cut that flick dead, so
+         the position is watched until it stops moving on its own. */
+      if (touchT) clearInterval(touchT);
+      var last = track.scrollLeft, still = 0, ticks = 0;
+      touchT = setInterval(function(){
+        var now = track.scrollLeft;
+        if (Math.abs(now - last) < 0.5) still++; else still = 0;
+        last = now;
+        if (still >= 2 || ++ticks > 20){
+          clearInterval(touchT); touchT = null;
+          pos = norm(now); lastTs = 0; touching = false; syncIx();
+        }
+      }, 90);
+    }
+    try {
+      track.addEventListener('touchstart', touchOn, { passive: true });
+      track.addEventListener('touchend', touchOff, { passive: true });
+      track.addEventListener('touchcancel', touchOff, { passive: true });
+    } catch (e) {
+      track.addEventListener('touchstart', touchOn);
+      track.addEventListener('touchend', touchOff);
+    }
+
+    /* Nothing moves while the plate is off screen. */
+    if ('IntersectionObserver' in window){
+      try {
+        new IntersectionObserver(function(entries){
+          for (var i = 0; i < entries.length; i++){ offscreen = !entries[i].isIntersecting; }
+          lastTs = 0;
+        }, { threshold: 0.05 }).observe(track);
+      } catch (e) {}
+    }
+
+    /* The strip is sized from the photographs, so it has to be re-measured
+       once they land and whenever the frame changes width. */
+    var rt = null;
+    function remeasure(){
+      if (rt) clearTimeout(rt);
+      rt = setTimeout(function(){
+        rt = null;
+        var before = span;
+        measure();
+        if (span > 0 && before > 0) pos = norm(pos * (span / before));
+        track.scrollLeft = pos;
+        syncIx();
+      }, 120);
+    }
+    window.addEventListener('resize', remeasure);
+    if (typeof ResizeObserver === 'function'){
+      try { new ResizeObserver(remeasure).observe(track); } catch (e) {}
+    }
+    var imgs = track.querySelectorAll('img');
+    for (var k = 0; k < imgs.length; k++){
+      if (!imgs[k].complete) imgs[k].addEventListener('load', remeasure);
+    }
+    setTimeout(remeasure, 600);
+    setTimeout(remeasure, 1800);
+
+    syncIx();
+  }
+
+  /* ============================================================
+     ENQUIRY FORM · hands off to the visitor's mail client.
+  ============================================================ */
+  function initForm(){
+    var form = document.getElementById('sponsor-form');
+    if (!form) return;
+    var status = document.getElementById('form-status');
+
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if (typeof form.checkValidity === 'function' && !form.checkValidity()){
+        if (typeof form.reportValidity === 'function') form.reportValidity();
+        if (status) status.textContent = 'Check the highlighted fields and try again.';
+        return;
+      }
+      var get = function(id){
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : '';
+      };
+      var name = get('f-name'), email = get('f-email'), org = get('f-org');
+      var interest = get('f-interest'), msg = get('f-msg');
+      var body =
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Organization: ' + (org || 'n/a') + '\n' +
+        'Interest: ' + interest + '\n\n' +
+        msg + '\n';
+      var href = 'mailto:hello@wlmacrobotics.ca' +
+        '?subject=' + encodeURIComponent('Sponsorship enquiry · ' + (org || name)) +
+        '&body=' + encodeURIComponent(body);
+      if (status) status.textContent = 'Opening your mail client. If nothing happens, write to hello@wlmacrobotics.ca';
+      window.location.href = href;
+    });
+  }
+
+  /* The accent word's hand-drawn rule. Same contract as everything else
+     on this page: the finished state is the CSS default, and the draw-on
+     is only attached once a real animation frame has been served. */
+  function initUnderline(){
+    if (reduceMotion) return;
+    raf(function(){
+      var p = document.querySelector('.acc .ul path');
+      if (p) p.classList.add('draw');
+    });
+  }
+
+  /* Decoration must never be able to break the enquiry form: each unit
+     boots in isolation, and the form boots first. */
+  function safely(fn){ try { fn(); } catch (e) {} }
+  function boot(){
+    safely(initForm);
+    safely(initChrome);
+    safely(initField);
+    safely(initBudget);
+    safely(initGallery);
+    safely(initUnderline);
+  }
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', boot);
+  } else { boot(); }
+})();
+</script>
+</body>
+</html>
