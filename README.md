@@ -1,8 +1,23 @@
 # WLMAC Robotics — sponsorship page redesign
 
 A redesign of the WLMAC Robotics FTC sponsorship page, in the **data-texture**
-style: instrument-panel telemetry on warm near-black, one amber accent, and the
-two alliance colours used exactly once each on the team plates.
+style: instrument-panel telemetry drawn in the school's colours.
+
+## Palette
+
+Taken from the live site at <https://www.wlmacrobotics.ca> so the two read as
+one program:
+
+| | |
+| --- | --- |
+| Surface | `#0D1B2A` navy, raised to `#12263A` / `#17324C` |
+| Gold | `#F0B44C` — figures, money, the primary action |
+| Blue | `#6FA6E8` — labels, links, structure |
+| Alliance | `#1D5FC2` blue and `#CE3038` red, once each, on the team plates |
+
+Gold and blue divide the work rather than competing: gold marks value and
+anything you can act on, blue marks what a thing *is*. Every pairing clears
+WCAG AA on the navy, and the budget bars clear 3:1 against their own track.
 
 **Live:** https://centurionactionx.github.io/wlmac-ftc-redesign/
 
@@ -27,14 +42,15 @@ no dependency beyond the two webfonts.
 
 ## The plates
 
-1. Hero — a robot drawn as a 104×60 character field, settling on load
-2. The two teams — CyberLyons 27964, MechLyons 32514
-3. Season photographs — a continuously drifting carousel
-4. Program figures
-5. What a partner gets
-6. Partner tiers
-7. The $10,000 budget, line by line
-8. Contact
+1. Hero — the season photograph, framed as on the live site
+2. Build grid — a robot drawn as a 104×60 character field, settling on load
+3. The two teams — CyberLyons 27964, MechLyons 32514
+4. Season photographs — a continuously drifting carousel
+5. Program figures
+6. What a partner gets
+7. Partner tiers
+8. The $10,000 budget, line by line
+9. Contact
 
 Plate and figure numbers are positional: if a plate moves, both sequences
 are renumbered so they still read in document order.

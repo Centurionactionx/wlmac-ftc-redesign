@@ -24,22 +24,24 @@
 ------------------------------------------------------------------ */
 
 :root{
-  --bg:#0E0D0B;
-  --bg-1:#141210;
-  --bg-2:#1A1712;
-  --line:#2E2820;
-  --line-hi:#4A4234;
-  --fg:#F2ECE0;
-  --fg-2:#B6AC99;
-  --fg-3:#8E8474;
-  --amber:#E0A83C;
-  --amber-hi:#F2C669;
-  --amber-dim:rgba(224,168,60,.16);
-  --on-amber:#151006;
-  --blue:#1D46C0;
-  --blue-deep:#152F7E;
-  --red:#B4301C;
-  --red-deep:#7C1F11;
+  --bg:#0D1B2A;
+  --bg-1:#12263A;
+  --bg-2:#17324C;
+  --line:#233C55;
+  --line-hi:#315273;
+  --fg:#E9EEF4;
+  --fg-2:#C3CFDC;
+  --fg-3:#8FA3B8;
+  --amber:#F0B44C;
+  --amber-hi:#F7C56A;
+  --amber-dim:rgba(240,180,76,.16);
+  --on-amber:#08131F;
+  --blue:#1D5FC2;
+  --blue-deep:#14458F;
+  --sky:#6FA6E8;      /* readable blue: labels, links */
+  --sky-hi:#9CC4F2;
+  --red:#CE3038;
+  --red-deep:#8E2026;
 
   --mono:"Azeret Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --disp:"Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -120,13 +122,13 @@ a{color:inherit}
   display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:12px var(--pad);
   border-bottom:1px solid var(--line);
-  background:rgba(14,13,11,.72);
+  background:rgba(13,27,42,.72);
   -webkit-backdrop-filter:blur(10px) saturate(1.2);
   backdrop-filter:blur(10px) saturate(1.2);
   transition:background-color .3s var(--e-out), border-color .3s var(--e-out), box-shadow .3s var(--e-out);
 }
 .topbar.stuck{
-  background:rgba(14,13,11,.94);
+  background:rgba(13,27,42,.94);
   border-bottom-color:var(--line-hi);
   box-shadow:0 14px 30px -22px rgba(0,0,0,.95);
 }
@@ -149,7 +151,7 @@ a{color:inherit}
   border:1px solid var(--line-hi);padding:8px 12px;background:transparent;white-space:nowrap;
   transition:border-color .3s var(--e-out), background-color .3s var(--e-out), color .3s var(--e-out);
 }
-.top-cta:hover{border-color:var(--amber);color:var(--amber-hi);background:rgba(224,168,60,.07)}
+.top-cta:hover{border-color:var(--amber);color:var(--amber-hi);background:rgba(240,180,76,.07)}
 .dot{width:6px;height:6px;background:var(--amber);flex:none}
 @media (prefers-reduced-motion: no-preference){
   .dot{animation:blink 1.6s steps(1,end) infinite}
@@ -202,37 +204,52 @@ h2{
   display:flex;flex-direction:column;justify-content:flex-start;
 }
 #hero .stamp{position:relative;z-index:var(--z-copy);margin-bottom:0}
+
+/* Hero photograph, framed exactly as the live site frames it: same file,
+   same crop, same two-layer scrim. */
+.hero-photo{
+  position:absolute;inset:0;z-index:var(--z-field);pointer-events:none;
+  background-image:url("images/hero-bg.jpg");
+  background-size:cover;
+  background-position:72% 40%;
+}
+
 .field-wrap{
-  position:absolute;inset:0;z-index:var(--z-field);
+  position:relative;z-index:var(--z-field);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;pointer-events:none;
-  background-image:radial-gradient(circle at center, rgba(224,168,60,.10) .8px, transparent 1px);
+  aspect-ratio:16/7;width:100%;
+  border:1px solid var(--line);background:var(--bg-1);
+  background-image:radial-gradient(circle at center, rgba(240,180,76,.10) .8px, transparent 1px);
   background-size:7px 7px;
 }
-.field-wrap.on{background-image:none}
+.field-wrap.on{background-image:none;background:var(--bg-1)}
+@media (max-width:640px){ .field-wrap{aspect-ratio:4/3} }
 #field{
   margin:0;font-family:var(--mono);font-weight:400;
   font-size:6px;line-height:1;letter-spacing:0;
-  white-space:pre;color:rgba(224,168,60,.3);
+  white-space:pre;color:rgba(240,180,76,.3);
   -webkit-user-select:none;user-select:none;
 }
-#field .d0{color:rgba(224,168,60,.17)}
-#field .d1{color:rgba(224,168,60,.44)}
-#field .d2{color:rgba(243,205,132,.82);text-shadow:0 0 7px rgba(224,168,60,.3)}
+#field .d0{color:rgba(240,180,76,.17)}
+#field .d1{color:rgba(240,180,76,.44)}
+#field .d2{color:rgba(247,197,106,.9);text-shadow:0 0 7px rgba(240,180,76,.3)}
 
+/* The live site's scrim, carried over unchanged: a vertical wash that
+   seats the photograph into the navy, over an angled one that keeps the
+   left side dark enough for the headline. */
 .hero-scrim{
   position:absolute;inset:0;z-index:var(--z-scrim);pointer-events:none;
   background:
-    /* Narrow viewports have no horizontal scrim, so the copy sits directly
-       over the brightest cells of the character field. These stops keep
-       every text/background pair above 4.5:1 while the grid still reads. */
-    linear-gradient(180deg, var(--bg) 0%, rgba(14,13,11,.88) 24%, rgba(14,13,11,.8) 60%, rgba(14,13,11,.96) 100%);
+    linear-gradient(180deg, rgba(10,20,32,.72) 0%, rgba(10,20,32,.28) 45%, rgba(13,27,42,.94) 96%),
+    linear-gradient(96deg, rgba(10,20,32,.94) 0%, rgba(10,20,32,.82) 34%, rgba(10,20,32,.38) 68%, rgba(10,20,32,.5) 100%);
 }
-@media (min-width:900px){
+/* Narrow viewports have no room for the angled pass, so the copy would sit
+   straight on the brightest part of the photograph. */
+@media (max-width:720px){
   .hero-scrim{
     background:
-      linear-gradient(90deg, var(--bg) 0%, rgba(14,13,11,.95) 40%, rgba(14,13,11,.28) 74%, rgba(14,13,11,.6) 100%),
-      linear-gradient(180deg, rgba(14,13,11,.7) 0%, transparent 30%, rgba(14,13,11,.85) 100%);
+      linear-gradient(180deg, rgba(10,20,32,.86) 0%, rgba(10,20,32,.62) 40%, rgba(13,27,42,.96) 100%);
   }
 }
 .hero-copy{
@@ -243,9 +260,9 @@ h2{
 .eyebrow{
   display:flex;align-items:center;gap:10px;
   font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--amber);margin:0 0 clamp(14px,2.4vw,20px);
+  color:var(--sky);margin:0 0 clamp(14px,2.4vw,20px);
 }
-.eyebrow .dash{width:clamp(26px,7vw,54px);height:1px;background:var(--amber);flex:none}
+.eyebrow .dash{width:clamp(26px,7vw,54px);height:1px;background:var(--sky);flex:none}
 .eyebrow .sep{color:var(--fg-3)}
 @media (max-width:400px){ .eyebrow{font-size:9px;letter-spacing:.13em} }
 
@@ -258,7 +275,7 @@ h1{
   color:var(--fg);
 }
 h1 .ln{display:block}
-h1 .ln.muted{color:#C9C1B2}
+h1 .ln.muted{color:#A9BCD1}
 .acc{
   position:relative;display:inline-block;
   font-style:italic;font-variation-settings:"wdth" 100,"wght" 880;
@@ -294,7 +311,7 @@ h1 .ln.muted{color:#C9C1B2}
 .btn-primary{background:var(--amber);color:var(--on-amber);border-color:var(--amber);font-weight:600}
 .btn-primary:hover{background:var(--amber-hi);border-color:var(--amber-hi);transform:translateY(-1px)}
 .btn-ghost{background:transparent;color:var(--fg);border-color:var(--line-hi)}
-.btn-ghost:hover{border-color:var(--fg-2);background:rgba(242,236,224,.05);transform:translateY(-1px)}
+.btn-ghost:hover{border-color:var(--fg-2);background:rgba(233,238,244,.06);transform:translateY(-1px)}
 @media (prefers-reduced-motion: reduce){ .btn:hover{transform:none} }
 
 /* hero telemetry strip */
@@ -332,7 +349,7 @@ h1 .ln.muted{color:#C9C1B2}
 .ink.red{background:var(--red)}
 .ink::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(circle at center, rgba(10,8,6,.5) 1px, transparent 1.35px);
+  background-image:radial-gradient(circle at center, rgba(4,12,22,.5) 1px, transparent 1.35px);
   background-size:5px 5px;mix-blend-mode:multiply;opacity:.85;
 }
 .ink > *{position:relative;z-index:1}
@@ -404,7 +421,7 @@ h1 .ln.muted{color:#C9C1B2}
   font-size:clamp(1.1rem,3.4vw,1.35rem);line-height:1.14;letter-spacing:-.015em;margin:0 0 8px;
 }
 .get h3 .ix{
-  font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--amber);
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--sky);
   display:block;margin-bottom:7px;font-variation-settings:normal;font-weight:400;
 }
 .get p{margin:0;color:var(--fg-2);font-size:.97rem;max-width:60ch;text-wrap:pretty}
@@ -462,17 +479,17 @@ h1 .ln.muted{color:#C9C1B2}
 .bene li.carry::before{content:"=";color:var(--fg-3)}
 
 .tier-flag{
-  grid-column:1/-1;border:1px solid var(--amber);background:linear-gradient(180deg, rgba(224,168,60,.07), rgba(224,168,60,.02));
+  grid-column:1/-1;border:1px solid var(--amber);background:linear-gradient(180deg, rgba(240,180,76,.07), rgba(240,180,76,.02));
   display:grid;gap:18px;grid-template-columns:1fr;padding:clamp(18px,3vw,26px);
 }
 @media (min-width:760px){ .tier-flag{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:start} }
-.tier-flag .t-id{color:var(--amber);border-bottom-color:rgba(224,168,60,.35)}
+.tier-flag .t-id{color:var(--amber);border-bottom-color:rgba(240,180,76,.35)}
 .tier-flag h3{font-size:clamp(1.6rem,6vw,2.4rem)}
 .tier-flag .price{font-size:1.15rem;font-weight:600}
-.tier-flag .bene li{border-top-color:rgba(224,168,60,.2)}
+.tier-flag .bene li{border-top-color:rgba(240,180,76,.2)}
 .tier-flag .bene li.hero-benefit{color:var(--fg);font-variation-settings:"wght" 620}
 .flag-note{
-  margin-top:14px;padding-top:12px;border-top:1px solid rgba(224,168,60,.25);
+  margin-top:14px;padding-top:12px;border-top:1px solid rgba(240,180,76,.25);
   font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-3);
 }
 .inkind{
@@ -512,7 +529,7 @@ h1 .ln.muted{color:#C9C1B2}
   width:calc(var(--p) / 32 * 100%);
   transform-origin:left;
 }
-.brow:nth-child(even) .fill{background:#C48F2C}
+.brow:nth-child(even) .fill{background:var(--sky)}
 /* The bars ship at full width. `armed` is only ever set by script once it
    knows it has an observer to bring them back, so the figures are correct
    with JS off. */
@@ -538,7 +555,7 @@ h1 .ln.muted{color:#C9C1B2}
   border:1px solid var(--line-hi);cursor:pointer;
   transition:border-color .3s var(--e-out), color .3s var(--e-out), background-color .3s var(--e-out);
 }
-.gal-btn:hover{border-color:var(--amber);color:var(--amber-hi);background:rgba(224,168,60,.08)}
+.gal-btn:hover{border-color:var(--amber);color:var(--amber-hi);background:rgba(240,180,76,.08)}
 .gal-btn svg{width:14px;height:14px;display:block;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:square}
 
 .gal-track{
@@ -582,7 +599,7 @@ h1 .ln.muted{color:#C9C1B2}
 .steps li::before{
   counter-increment:s;content:counter(s,decimal-leading-zero);
   position:absolute;left:0;top:12px;
-  font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:10px;color:var(--amber);letter-spacing:.1em;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:10px;color:var(--sky);letter-spacing:.1em;
 }
 .steps li b{color:var(--fg);font-variation-settings:"wght" 620}
 
@@ -590,8 +607,8 @@ h1 .ln.muted{color:#C9C1B2}
 .dl .r{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .dl dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3);flex:none}
 .dl dd{margin:0;font-family:var(--mono);font-size:.85rem;color:var(--fg);text-align:right;word-break:break-word}
-.dl dd a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(224,168,60,.4)}
-.dl dd a:hover{color:var(--amber-hi);border-bottom-color:var(--amber-hi)}
+.dl dd a{color:var(--sky);text-decoration:none;border-bottom:1px solid rgba(111,166,232,.45)}
+.dl dd a:hover{color:var(--sky-hi);border-bottom-color:var(--sky-hi)}
 
 form{display:grid;gap:12px}
 .f-row{display:grid;gap:12px;grid-template-columns:1fr}
@@ -608,7 +625,7 @@ form{display:grid;gap:12px}
   transition:border-color .25s var(--e-out), background-color .25s var(--e-out);
 }
 .field textarea{resize:vertical;min-height:104px;line-height:1.55}
-.field input::placeholder,.field textarea::placeholder{color:#9C9280;opacity:1}
+.field input::placeholder,.field textarea::placeholder{color:#7E93AA;opacity:1}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--amber);background:var(--bg-2);outline-offset:2px}
 .field select{
   appearance:none;-webkit-appearance:none;
@@ -653,7 +670,7 @@ footer{
   font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg-3);
 }
 footer a{color:var(--fg-2);text-decoration:none}
-footer a:hover{color:var(--amber)}
+footer a:hover{color:var(--sky-hi)}
 
 /* ---------- back to top ---------- */
 .totop{
@@ -662,7 +679,7 @@ footer a:hover{color:var(--amber)}
   width:44px;height:44px;padding:0;
   display:grid;place-items:center;
   font-family:var(--mono);
-  color:var(--amber);background:rgba(20,18,16,.84);
+  color:var(--amber);background:rgba(18,38,58,.86);
   border:1px solid var(--line-hi);cursor:pointer;
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   opacity:0;visibility:hidden;transform:translateY(10px);
@@ -670,7 +687,7 @@ footer a:hover{color:var(--amber)}
              border-color .3s var(--e-out), background-color .3s var(--e-out), color .3s var(--e-out);
 }
 .totop.show{opacity:1;visibility:visible;transform:none}
-.totop:hover{border-color:var(--amber);background:rgba(224,168,60,.14);color:var(--amber-hi)}
+.totop:hover{border-color:var(--amber);background:rgba(240,180,76,.14);color:var(--amber-hi)}
 .totop svg{width:16px;height:16px;display:block;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square}
 @media (max-width:520px){ .totop{width:40px;height:40px} }
 
@@ -703,10 +720,10 @@ footer a:hover{color:var(--amber)}
 
   <!-- ============ 01 · HERO ============ -->
   <section id="hero" aria-labelledby="h1">
-    <div class="field-wrap" id="field-wrap" aria-hidden="true"><pre id="field"></pre></div>
+    <div class="hero-photo" aria-hidden="true"></div>
     <div class="hero-scrim" aria-hidden="true"></div>
 
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 01</span><span class="rule" aria-hidden="true"></span><span class="opt">Build grid 104&times;60</span><span class="rule" aria-hidden="true"></span><span>Season 2026/27</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 01</span><span class="rule" aria-hidden="true"></span><span class="opt">Both robots &middot; field staging</span><span class="rule" aria-hidden="true"></span><span>Season 2026/27</span><span class="reg" aria-hidden="true"></span></p>
 
     <div class="hero-copy">
       <p class="eyebrow"><span class="dash" aria-hidden="true"></span>Student-built <span class="sep">·</span> Est. 2024</p>
@@ -733,9 +750,21 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 02 · THE TWO TEAMS ============ -->
+  <!-- ============ 02 · BUILD GRID ============ -->
+  <section id="grid" aria-labelledby="h-grid">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 02</span><span class="rule" aria-hidden="true"></span><span class="opt">Build grid 104&times;60</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-grid">One machine, one character at a time.</h2>
+    <p class="lede">Every part on both robots was chosen, cut and wired by a student. The drawing below is the same idea in miniature: a machine assembled out of nothing but typed characters.</p>
+
+    <figure class="fig">
+      <div class="field-wrap" id="field-wrap" aria-hidden="true"><pre id="field"></pre></div>
+      <figcaption><span class="t">Drivetrain, mast, arm and intake, plotted on a 104&times;60 grid</span><span class="n">Fig 01</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 03 · THE TWO TEAMS ============ -->
   <section id="teams" aria-labelledby="h-teams">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 02</span><span class="rule" aria-hidden="true"></span><span class="opt">Team registry · 27964 / 32514</span><span class="rule" aria-hidden="true"></span><span>Teams 02</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 03</span><span class="rule" aria-hidden="true"></span><span class="opt">Team registry · 27964 / 32514</span><span class="rule" aria-hidden="true"></span><span>Teams 02</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-teams">One shop. Two teams.</h2>
     <p class="lede">The same build space, the same standards, twice the students who get to make something and take it to a field. <strong>CyberLyons</strong> set the bar in 2024. <strong>MechLyons</strong> proved it scales in 2025.</p>
 
@@ -762,9 +791,9 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 03 · SEASON PHOTOS ============ -->
+  <!-- ============ 04 · SEASON PHOTOS ============ -->
   <section id="season" aria-labelledby="h-season">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 03</span><span class="rule" aria-hidden="true"></span><span class="opt">Field record · Fig. 01-06</span><span class="rule" aria-hidden="true"></span><span>Sheet 01</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 04</span><span class="rule" aria-hidden="true"></span><span class="opt">Field record · Fig. 02-07</span><span class="rule" aria-hidden="true"></span><span>Sheet 01</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-season">The season on the record.</h2>
     <p class="lede">Competitions, classrooms and the nights in between. All of it run by students.</p>
 
@@ -784,50 +813,50 @@ footer a:hover{color:var(--amber)}
           <div class="frame">
             <img src="images/portfolio/gallery/qualifier.jpg" alt="Both WLMAC teams at the February 2026 Toronto qualifier with their robots at the field" width="1000" height="562" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">February 2026 Qualifier, Toronto · both teams brought robots to the field</span><span class="n">Fig 01</span></figcaption>
+          <figcaption><span class="t">February 2026 Qualifier, Toronto · both teams brought robots to the field</span><span class="n">Fig 02</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/club-crawl.jpg" alt="Grade 9 Night, robotics introduced to incoming students and families" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Grade 9 Night · 100+ incoming students</span><span class="n">Fig 02</span></figcaption>
+          <figcaption><span class="t">Grade 9 Night · 100+ incoming students</span><span class="n">Fig 03</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/outreach-event1.jpg" alt="Library Open House with students building, driving and programming projects" width="1000" height="1328" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Library Open House · 50+ builders</span><span class="n">Fig 03</span></figcaption>
+          <figcaption><span class="t">Library Open House · 50+ builders</span><span class="n">Fig 04</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/mseo-classroom.jpg" alt="Science and Engineering Olympics 2026 classroom session with middle school students" width="1000" height="750" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">MSEO 2026 · 30+ middle schools</span><span class="n">Fig 04</span></figcaption>
+          <figcaption><span class="t">MSEO 2026 · 30+ middle schools</span><span class="n">Fig 05</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/nych-yorkdale.jpg" alt="NYCH Yorkdale workshop with students building Arduino projects" width="1000" height="750" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">NYCH Yorkdale · 60+ Arduino builds</span><span class="n">Fig 05</span></figcaption>
+          <figcaption><span class="t">NYCH Yorkdale · 60+ Arduino builds</span><span class="n">Fig 06</span></figcaption>
         </figure>
 
         <figure class="fig">
           <div class="frame">
             <img src="images/portfolio/gallery/dublinevent.jpg" alt="Dublin Heights elementary students at their first hands-on engineering session" width="1000" height="750" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Dublin Heights · first hands-on build</span><span class="n">Fig 06</span></figcaption>
+          <figcaption><span class="t">Dublin Heights · first hands-on build</span><span class="n">Fig 07</span></figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============ 04 · STATS ============ -->
+  <!-- ============ 05 · STATS ============ -->
   <section id="stats" aria-labelledby="h-stats">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 04</span><span class="rule" aria-hidden="true"></span><span class="opt">Program telemetry</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 05</span><span class="rule" aria-hidden="true"></span><span class="opt">Program telemetry</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-stats">The program, in figures.</h2>
 
     <div class="ledger">
@@ -864,9 +893,9 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 05 · WHAT SPONSORS GET ============ -->
+  <!-- ============ 06 · WHAT SPONSORS GET ============ -->
   <section id="value" aria-labelledby="h-value">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 05</span><span class="rule" aria-hidden="true"></span><span class="opt">Placement channels</span><span class="rule" aria-hidden="true"></span><span>CH 01-03</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 06</span><span class="rule" aria-hidden="true"></span><span class="opt">Placement channels</span><span class="rule" aria-hidden="true"></span><span>CH 01-03</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-value">What a partner actually gets.</h2>
     <p class="lede">Not a thank-you note. Placement on a machine that gets photographed all season, on the people driving it, and in front of a school of 1,400.</p>
 
@@ -876,7 +905,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/hero-bg.jpg" alt="Both WLMAC robots staged on a competition field before a match" width="1920" height="1446" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Both robots, field staging</span><span class="n">Fig 07</span></figcaption>
+          <figcaption><span class="t">Both robots, field staging</span><span class="n">Fig 08</span></figcaption>
         </figure>
         <div>
           <h3><span class="ix">Robot · every match</span>Logo on a competing robot</h3>
@@ -893,7 +922,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/about-photo.jpg" alt="The full WLMAC Robotics roster in blue team shirts with both robots in the school gym" width="1400" height="781" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Full roster, both robots</span><span class="n">Fig 08</span></figcaption>
+          <figcaption><span class="t">Full roster, both robots</span><span class="n">Fig 09</span></figcaption>
         </figure>
       </div>
 
@@ -902,7 +931,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/portfolio/gallery/robot-bench.jpg" alt="Course fair display on campus with a robot on the bench and students gathered around" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Course fair, campus</span><span class="n">Fig 09</span></figcaption>
+          <figcaption><span class="t">Course fair, campus</span><span class="n">Fig 10</span></figcaption>
         </figure>
         <div>
           <h3><span class="ix">Campus · 1,400 students</span>Campus and social reach</h3>
@@ -912,9 +941,9 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 06 · TIERS ============ -->
+  <!-- ============ 07 · TIERS ============ -->
   <section id="tiers" aria-labelledby="h-tiers">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 06</span><span class="rule" aria-hidden="true"></span><span class="opt">Partner tiers · CAD</span><span class="rule" aria-hidden="true"></span><span>Range 200-1500+</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 07</span><span class="rule" aria-hidden="true"></span><span class="opt">Partner tiers · CAD</span><span class="rule" aria-hidden="true"></span><span>Range 200-1500+</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-tiers">Three ways in.</h2>
     <p class="lede">Every tier includes everything below it. Pick the one that fits the budget you already have.</p>
 
@@ -960,7 +989,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:5/4">
             <img src="images/portfolio/gallery/robot-decode.jpg" alt="MechLyons robot lined up at the goal during a DECODE season match" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Flagship placement zone</span><span class="n">Fig 10</span></figcaption>
+          <figcaption><span class="t">Flagship placement zone</span><span class="n">Fig 11</span></figcaption>
         </figure>
       </article>
     </div>
@@ -968,9 +997,9 @@ footer a:hover{color:var(--amber)}
     <p class="inkind"><b>In-kind counts.</b> Donated parts, tools, machine time or services offset cash at equal value and land you in the same tier.</p>
   </section>
 
-  <!-- ============ 07 · BUDGET ============ -->
+  <!-- ============ 08 · BUDGET ============ -->
   <section id="budget" aria-labelledby="h-budget">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 07</span><span class="rule" aria-hidden="true"></span><span class="opt">Allocation map · 10 lines</span><span class="rule" aria-hidden="true"></span><span>CAD</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 08</span><span class="rule" aria-hidden="true"></span><span class="opt">Allocation map · 10 lines</span><span class="rule" aria-hidden="true"></span><span>CAD</span><span class="reg" aria-hidden="true"></span></p>
 
     <div class="bud-head">
       <div>
@@ -1011,9 +1040,9 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 08 · CONTACT ============ -->
+  <!-- ============ 09 · CONTACT ============ -->
   <section id="contact" aria-labelledby="h-contact">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 08</span><span class="rule" aria-hidden="true"></span><span class="opt">Station WLMAC-001</span><span class="rule" aria-hidden="true"></span><span>Open channel</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 09</span><span class="rule" aria-hidden="true"></span><span class="opt">Station WLMAC-001</span><span class="rule" aria-hidden="true"></span><span>Open channel</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-contact">Start the conversation.</h2>
     <p class="lede">Cheque or e-transfer, and everything in writing first. No pressure, no boilerplate deck.</p>
 
@@ -1189,11 +1218,13 @@ footer a:hover{color:var(--amber)}
 
     b += (hash(c, r) - 0.5) * 0.10;
 
-    /* keep the left third quiet: the headline lives there */
-    var u = c / COLS;
-    b *= u < 0.30 ? (0.30 + 0.70 * (u / 0.30)) : 1;
-    var v = r / ROWS;
-    if (v > 0.88) b *= 1 - (v - 0.88) / 0.14;
+    /* The plate stands on its own now, so the drawing is even across the
+       grid -- no headline to keep clear of. Only the outermost rows and
+       columns are eased off, so the field meets its frame rather than
+       being cut by it. */
+    var u = c / COLS, v = r / ROWS;
+    var edge = Math.min(u, 1 - u, v, 1 - v) / 0.06;
+    if (edge < 1) b *= 0.25 + 0.75 * (edge < 0 ? 0 : edge);
 
     var i = Math.round(b * 8);
     return i < 0 ? 0 : (i > 8 ? 8 : i);
@@ -1261,10 +1292,9 @@ footer a:hover{color:var(--amber)}
     if (!w || !h) return;
     var byW = w / (COLS * advance);
     var byH = h / ROWS;
-    /* Fit the width, but allow a small overscale so the grid reaches the
-       top and bottom of the hero instead of floating as a stamp. The
-       wrapper clips, and the outermost columns are empty field anyway. */
-    var fs = Math.min(byH, byW * 1.18);
+    /* Contained in its own plate now, so the whole grid has to fit inside
+       the frame rather than overscaling to bleed past it. */
+    var fs = Math.min(byH, byW);
     if (!isFinite(fs) || fs < 3) fs = 3;
     pre.style.fontSize = fs.toFixed(3) + 'px';
   }
