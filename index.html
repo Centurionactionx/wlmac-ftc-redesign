@@ -627,6 +627,25 @@ form{display:grid;gap:12px}
   color:var(--amber);line-height:1.6;min-height:1.2em;
 }
 
+/* ---------- verification ----------
+   .field is a flex container, and that would win over the hidden
+   attribute, so hiding has to be stated explicitly. */
+[hidden]{display:none !important}
+.cap-label{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg-2);margin:0;
+}
+#captcha-host{min-height:78px}
+.cap-note{
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--amber);line-height:1.6;margin:0;min-height:1.2em;
+}
+/* The widget is a fixed 304px and will not reflow, so it is scaled rather
+   than allowed to push the form wider than the sheet. */
+@media (max-width:380px){
+  #captcha-host{transform:scale(.85);transform-origin:0 0;height:66px}
+}
+
 /* ---------- footer ---------- */
 footer{
   padding:18px var(--pad);border-top:1px solid var(--line);
@@ -743,9 +762,72 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 03 · STATS ============ -->
+  <!-- ============ 03 · SEASON PHOTOS ============ -->
+  <section id="season" aria-labelledby="h-season">
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 03</span><span class="rule" aria-hidden="true"></span><span class="opt">Field record · Fig. 01-06</span><span class="rule" aria-hidden="true"></span><span>Sheet 01</span><span class="reg" aria-hidden="true"></span></p>
+    <h2 id="h-season">The season on the record.</h2>
+    <p class="lede">Competitions, classrooms and the nights in between. All of it run by students.</p>
+
+    <div class="gallery">
+      <div class="gal-ctl">
+        <p class="gal-count"><b id="gal-ix">01</b> / <span id="gal-n">06</span> · Field plates</p>
+        <button class="gal-btn" type="button" id="gal-prev" aria-label="Previous plate" aria-controls="gal-track">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 2.6 4.4 8l5.6 5.4"/></svg>
+        </button>
+        <button class="gal-btn" type="button" id="gal-next" aria-label="Next plate" aria-controls="gal-track">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 2.6 11.6 8 6 13.4"/></svg>
+        </button>
+      </div>
+
+      <div class="gal-track" id="gal-track" tabindex="0" role="group" aria-label="Season plates, scroll or use the arrow keys">
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/qualifier.jpg" alt="Both WLMAC teams at the February 2026 Toronto qualifier with their robots at the field" width="1000" height="562" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">February 2026 Qualifier, Toronto · both teams brought robots to the field</span><span class="n">Fig 01</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/club-crawl.jpg" alt="Grade 9 Night, robotics introduced to incoming students and families" width="1000" height="1333" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Grade 9 Night · 100+ incoming students</span><span class="n">Fig 02</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/outreach-event1.jpg" alt="Library Open House with students building, driving and programming projects" width="1000" height="1328" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Library Open House · 50+ builders</span><span class="n">Fig 03</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/mseo-classroom.jpg" alt="Science and Engineering Olympics 2026 classroom session with middle school students" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">MSEO 2026 · 30+ middle schools</span><span class="n">Fig 04</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/nych-yorkdale.jpg" alt="NYCH Yorkdale workshop with students building Arduino projects" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">NYCH Yorkdale · 60+ Arduino builds</span><span class="n">Fig 05</span></figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="frame">
+            <img src="images/portfolio/gallery/dublinevent.jpg" alt="Dublin Heights elementary students at their first hands-on engineering session" width="1000" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span class="t">Dublin Heights · first hands-on build</span><span class="n">Fig 06</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 · STATS ============ -->
   <section id="stats" aria-labelledby="h-stats">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 03</span><span class="rule" aria-hidden="true"></span><span class="opt">Program telemetry</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 04</span><span class="rule" aria-hidden="true"></span><span class="opt">Program telemetry</span><span class="rule" aria-hidden="true"></span><span>Gain 1</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-stats">The program, in figures.</h2>
 
     <div class="ledger">
@@ -782,9 +864,9 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 04 · WHAT SPONSORS GET ============ -->
+  <!-- ============ 05 · WHAT SPONSORS GET ============ -->
   <section id="value" aria-labelledby="h-value">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 04</span><span class="rule" aria-hidden="true"></span><span class="opt">Placement channels</span><span class="rule" aria-hidden="true"></span><span>CH 01-03</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 05</span><span class="rule" aria-hidden="true"></span><span class="opt">Placement channels</span><span class="rule" aria-hidden="true"></span><span>CH 01-03</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-value">What a partner actually gets.</h2>
     <p class="lede">Not a thank-you note. Placement on a machine that gets photographed all season, on the people driving it, and in front of a school of 1,400.</p>
 
@@ -794,7 +876,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/hero-bg.jpg" alt="Both WLMAC robots staged on a competition field before a match" width="1920" height="1446" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Both robots, field staging</span><span class="n">Fig 01</span></figcaption>
+          <figcaption><span class="t">Both robots, field staging</span><span class="n">Fig 07</span></figcaption>
         </figure>
         <div>
           <h3><span class="ix">Robot · every match</span>Logo on a competing robot</h3>
@@ -811,7 +893,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/about-photo.jpg" alt="The full WLMAC Robotics roster in blue team shirts with both robots in the school gym" width="1400" height="781" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Full roster, both robots</span><span class="n">Fig 02</span></figcaption>
+          <figcaption><span class="t">Full roster, both robots</span><span class="n">Fig 08</span></figcaption>
         </figure>
       </div>
 
@@ -820,7 +902,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:4/3">
             <img src="images/portfolio/gallery/robot-bench.jpg" alt="Course fair display on campus with a robot on the bench and students gathered around" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Course fair, campus</span><span class="n">Fig 03</span></figcaption>
+          <figcaption><span class="t">Course fair, campus</span><span class="n">Fig 09</span></figcaption>
         </figure>
         <div>
           <h3><span class="ix">Campus · 1,400 students</span>Campus and social reach</h3>
@@ -830,9 +912,9 @@ footer a:hover{color:var(--amber)}
     </div>
   </section>
 
-  <!-- ============ 05 · TIERS ============ -->
+  <!-- ============ 06 · TIERS ============ -->
   <section id="tiers" aria-labelledby="h-tiers">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 05</span><span class="rule" aria-hidden="true"></span><span class="opt">Partner tiers · CAD</span><span class="rule" aria-hidden="true"></span><span>Range 200-1500+</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 06</span><span class="rule" aria-hidden="true"></span><span class="opt">Partner tiers · CAD</span><span class="rule" aria-hidden="true"></span><span>Range 200-1500+</span><span class="reg" aria-hidden="true"></span></p>
     <h2 id="h-tiers">Three ways in.</h2>
     <p class="lede">Every tier includes everything below it. Pick the one that fits the budget you already have.</p>
 
@@ -878,7 +960,7 @@ footer a:hover{color:var(--amber)}
           <div class="frame" style="aspect-ratio:5/4">
             <img src="images/portfolio/gallery/robot-decode.jpg" alt="MechLyons robot lined up at the goal during a DECODE season match" width="1000" height="1333" loading="lazy" decoding="async">
           </div>
-          <figcaption><span class="t">Flagship placement zone</span><span class="n">Fig 04</span></figcaption>
+          <figcaption><span class="t">Flagship placement zone</span><span class="n">Fig 10</span></figcaption>
         </figure>
       </article>
     </div>
@@ -886,9 +968,9 @@ footer a:hover{color:var(--amber)}
     <p class="inkind"><b>In-kind counts.</b> Donated parts, tools, machine time or services offset cash at equal value and land you in the same tier.</p>
   </section>
 
-  <!-- ============ 06 · BUDGET (taste v2 allocation map) ============ -->
+  <!-- ============ 07 · BUDGET ============ -->
   <section id="budget" aria-labelledby="h-budget">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 06</span><span class="rule" aria-hidden="true"></span><span class="opt">Allocation map · 10 lines</span><span class="rule" aria-hidden="true"></span><span>CAD</span><span class="reg" aria-hidden="true"></span></p>
+    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 07</span><span class="rule" aria-hidden="true"></span><span class="opt">Allocation map · 10 lines</span><span class="rule" aria-hidden="true"></span><span>CAD</span><span class="reg" aria-hidden="true"></span></p>
 
     <div class="bud-head">
       <div>
@@ -926,69 +1008,6 @@ footer a:hover{color:var(--amber)}
       <div class="brow" style="--p:4;--d:7"><div class="line"><span class="nmx">Pit display and presentation</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
       <div class="brow" style="--p:4;--d:8"><div class="line"><span class="nmx">Outreach and demo supplies</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
       <div class="brow" style="--p:4;--d:9"><div class="line"><span class="nmx">Travel and competition days</span><span class="pct">4.0%</span><span class="amtx">$400</span></div><div class="track"><i class="fill"></i></div></div>
-    </div>
-  </section>
-
-  <!-- ============ 07 · SEASON PHOTOS ============ -->
-  <section id="season" aria-labelledby="h-season">
-    <p class="stamp"><span class="reg" aria-hidden="true"></span><span class="id">Plate 07</span><span class="rule" aria-hidden="true"></span><span class="opt">Field record · Fig. 05-10</span><span class="rule" aria-hidden="true"></span><span>Sheet 01</span><span class="reg" aria-hidden="true"></span></p>
-    <h2 id="h-season">The season on the record.</h2>
-    <p class="lede">Competitions, classrooms and the nights in between. All of it run by students.</p>
-
-    <div class="gallery">
-      <div class="gal-ctl">
-        <p class="gal-count"><b id="gal-ix">01</b> / <span id="gal-n">06</span> · Field plates</p>
-        <button class="gal-btn" type="button" id="gal-prev" aria-label="Previous plate" aria-controls="gal-track">
-          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 2.6 4.4 8l5.6 5.4"/></svg>
-        </button>
-        <button class="gal-btn" type="button" id="gal-next" aria-label="Next plate" aria-controls="gal-track">
-          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 2.6 11.6 8 6 13.4"/></svg>
-        </button>
-      </div>
-
-      <div class="gal-track" id="gal-track" tabindex="0" role="group" aria-label="Season plates, scroll or use the arrow keys">
-        <figure class="fig">
-          <div class="frame">
-            <img src="images/portfolio/gallery/qualifier.jpg" alt="Both WLMAC teams at the February 2026 Toronto qualifier with their robots at the field" width="1000" height="562" loading="lazy" decoding="async">
-          </div>
-          <figcaption><span class="t">February 2026 Qualifier, Toronto · both teams brought robots to the field</span><span class="n">Fig 05</span></figcaption>
-        </figure>
-
-        <figure class="fig">
-          <div class="frame">
-            <img src="images/portfolio/gallery/club-crawl.jpg" alt="Grade 9 Night, robotics introduced to incoming students and families" width="1000" height="1333" loading="lazy" decoding="async">
-          </div>
-          <figcaption><span class="t">Grade 9 Night · 100+ incoming students</span><span class="n">Fig 06</span></figcaption>
-        </figure>
-
-        <figure class="fig">
-          <div class="frame">
-            <img src="images/portfolio/gallery/outreach-event1.jpg" alt="Library Open House with students building, driving and programming projects" width="1000" height="1328" loading="lazy" decoding="async">
-          </div>
-          <figcaption><span class="t">Library Open House · 50+ builders</span><span class="n">Fig 07</span></figcaption>
-        </figure>
-
-        <figure class="fig">
-          <div class="frame">
-            <img src="images/portfolio/gallery/mseo-classroom.jpg" alt="Science and Engineering Olympics 2026 classroom session with middle school students" width="1000" height="750" loading="lazy" decoding="async">
-          </div>
-          <figcaption><span class="t">MSEO 2026 · 30+ middle schools</span><span class="n">Fig 08</span></figcaption>
-        </figure>
-
-        <figure class="fig">
-          <div class="frame">
-            <img src="images/portfolio/gallery/nych-yorkdale.jpg" alt="NYCH Yorkdale workshop with students building Arduino projects" width="1000" height="750" loading="lazy" decoding="async">
-          </div>
-          <figcaption><span class="t">NYCH Yorkdale · 60+ Arduino builds</span><span class="n">Fig 09</span></figcaption>
-        </figure>
-
-        <figure class="fig">
-          <div class="frame">
-            <img src="images/portfolio/gallery/dublinevent.jpg" alt="Dublin Heights elementary students at their first hands-on engineering session" width="1000" height="750" loading="lazy" decoding="async">
-          </div>
-          <figcaption><span class="t">Dublin Heights · first hands-on build</span><span class="n">Fig 10</span></figcaption>
-        </figure>
-      </div>
     </div>
   </section>
 
@@ -1046,6 +1065,15 @@ footer a:hover{color:var(--amber)}
         <div class="field">
           <label for="f-msg">Message</label>
           <textarea id="f-msg" name="message" required placeholder="What you are thinking of supporting, and anything you want to know first."></textarea>
+        </div>
+
+        <!-- Ships hidden. Only revealed once the widget has actually
+             rendered, so a blocked script or a key that does not cover this
+             domain leaves the form exactly as it was. -->
+        <div class="field" id="captcha-field" hidden>
+          <p class="cap-label" id="captcha-label">Verification</p>
+          <div id="captcha-host"></div>
+          <p class="cap-note" id="captcha-note" role="status" aria-live="polite"></p>
         </div>
 
         <div class="f-foot">
@@ -1680,6 +1708,74 @@ footer a:hover{color:var(--amber)}
   }
 
   /* ============================================================
+     VERIFICATION · reCAPTCHA v2 checkbox.
+
+     A key is bound to a list of domains in the reCAPTCHA console, so the
+     host serving this page has to be named there or the widget draws an
+     error where the checkbox should be. Set CAPTCHA_KEY to '' to switch
+     the whole thing off.
+
+     The limit is worth stating plainly: this form hands off to the
+     visitor's own mail client, so there is no server of ours to check the
+     token against. The widget turns away a script filling the form in a
+     browser; only a backend holding the secret can actually prove a human
+     sent anything.
+  ============================================================ */
+  var CAPTCHA_KEY = '6LdKO2gtAAAAAEJ7WHY9w_Sx7Phd7VflTkFUICBG';
+  var captchaId = null;
+  var captchaPrompted = false;
+
+  function captchaNote(msg){
+    var n = document.getElementById('captcha-note');
+    if (n) n.textContent = msg || '';
+  }
+
+  /* Stand down completely: the field goes back to hidden and the form
+     stops asking for something the reader has no way to give. */
+  function captchaOff(){
+    captchaId = null;
+    var field = document.getElementById('captcha-field');
+    if (field) field.hidden = true;
+  }
+
+  function initCaptcha(){
+    if (!CAPTCHA_KEY) return;
+    var field = document.getElementById('captcha-field');
+    var host = document.getElementById('captcha-host');
+    if (!field || !host) return;
+
+    /* Explicit render rather than auto: the field is revealed only once a
+       widget genuinely exists to be ticked. */
+    window.wlmacCaptcha = function(){
+      if (!window.grecaptcha || !grecaptcha.render) return;
+      try {
+        captchaId = grecaptcha.render(host, {
+          sitekey: CAPTCHA_KEY,
+          theme: 'dark',
+          callback: function(){ captchaNote(''); },
+          'expired-callback': function(){ captchaNote('That check expired - tick it again.'); },
+          'error-callback': function(){ captchaOff(); }
+        });
+        field.hidden = false;
+      } catch (e) { captchaOff(); }
+    };
+
+    var s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js?onload=wlmacCaptcha&render=explicit';
+    s.async = true;
+    s.defer = true;
+    s.onerror = captchaOff;
+    document.head.appendChild(s);
+  }
+
+  /* null means there is nothing to satisfy, '' means rendered and unticked. */
+  function captchaToken(){
+    if (captchaId === null || !window.grecaptcha || !grecaptcha.getResponse) return null;
+    try { return grecaptcha.getResponse(captchaId) || ''; }
+    catch (e) { return null; }
+  }
+
+  /* ============================================================
      ENQUIRY FORM · hands off to the visitor's mail client.
   ============================================================ */
   function initForm(){
@@ -1693,6 +1789,27 @@ footer a:hover{color:var(--amber)}
         if (typeof form.reportValidity === 'function') form.reportValidity();
         if (status) status.textContent = 'Check the highlighted fields and try again.';
         return;
+      }
+
+      /* Asks once, then gets out of the way.
+
+         An unticked box and a box that cannot be ticked look identical from
+         here: a key that does not cover this domain renders an error where
+         the checkbox should be, and getResponse still just returns ''. So
+         the check prompts on the first attempt and stands aside on the
+         second. There is no server of ours verifying the token anyway, and
+         a gate that cannot be verified must not be allowed to swallow a
+         sponsorship enquiry from someone who has no way through it. */
+      if (captchaToken() === ''){
+        if (!captchaPrompted){
+          captchaPrompted = true;
+          captchaNote('Tick the verification box, then send again.');
+          if (status) status.textContent = 'Confirm the verification check and try again.';
+          var h = document.getElementById('captcha-host');
+          if (h && h.scrollIntoView) h.scrollIntoView({ block: 'center' });
+          return;
+        }
+        captchaNote('');
       }
       var get = function(id){
         var el = document.getElementById(id);
@@ -1710,6 +1827,10 @@ footer a:hover{color:var(--amber)}
         '?subject=' + encodeURIComponent('Sponsorship enquiry · ' + (org || name)) +
         '&body=' + encodeURIComponent(body);
       if (status) status.textContent = 'Opening your mail client. If nothing happens, write to hello@wlmacrobotics.ca';
+      /* A token is single use, so the next enquiry starts from a clean box. */
+      if (captchaId !== null && window.grecaptcha && grecaptcha.reset){
+        try { grecaptcha.reset(captchaId); } catch (e) {}
+      }
       window.location.href = href;
     });
   }
@@ -1730,6 +1851,7 @@ footer a:hover{color:var(--amber)}
   function safely(fn){ try { fn(); } catch (e) {} }
   function boot(){
     safely(initForm);
+    safely(initCaptcha);
     safely(initChrome);
     safely(initField);
     safely(initBudget);
