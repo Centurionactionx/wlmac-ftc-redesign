@@ -87,10 +87,3 @@ timer owns every end state, so the page still lands correctly in a renderer
 that never serves an animation frame. Setting `prefers-reduced-motion` stops
 the carousel drift and the bar fills.
 Photographs run in their own colour, framed by a hairline and nothing else.
-
-## Writing
-
-Copy on the page follows a house style that avoids the tells of machine
-writing: no em dashes in prose, no groups of three, no "not X, but Y", and no
-stock metaphors. Worth a read before editing the copy, since those patterns
-creep back in easily.
